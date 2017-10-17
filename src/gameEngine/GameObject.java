@@ -1,7 +1,7 @@
 // This class creates a game object
 package gameEngine;
 
-import graphicEngine.VertexArrayObject;
+
 
 
 import static org.lwjgl.opengl.GL11.*;

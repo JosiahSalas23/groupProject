@@ -13,7 +13,7 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
-import gameEngine.GameObject;
+
 import gameEngine.Level;
 import input.KeyboardInput;
 import input.MouseInput;
@@ -25,6 +25,7 @@ public class Driver {
 	public final int WIDTH = 1000;
 	public final int HEIGHT = 1000;
 	public long window;
+	public boolean pause;
 	
 	private GLFWKeyCallback keyCallback;
 	private GLFWCursorPosCallback cursorCallback;
@@ -85,14 +86,8 @@ public class Driver {
 		
 		glfwPollEvents();
 		
-		//if (KeyboardInput.isKeyDown(GLFW_KEY_SPACE)) {
-			
-		   //System.out.println("Space Key pressed");
-			
-		//} // end if
-		
 		gamePaddlesAndBall.update();
-		
+
 	} // end update
 	
 	public void run() {
@@ -137,6 +132,7 @@ public class Driver {
 				
 			} // end if
 			
+			// game ends once the score limit is reached
 			if ((gamePaddlesAndBall.player1.getScore() == 7) || (gamePaddlesAndBall.player2.getScore() == 7)) {
 				
 				isRunning = false;

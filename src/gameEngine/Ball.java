@@ -37,7 +37,7 @@ public class Ball extends GameObject {
 		this.position = new Vector3f();
 		vao = new VertexArrayObject(this.vertices, this.indices);
 		this.vaoID = vao.getVaoID();
-		this.movement = new Vector3f(0.02f, 0.015f, 0.0f);
+		this.movement = new Vector3f(0.015f, 0.0f, 0.0f);
 		
 	} // end ball
 	

@@ -19,10 +19,10 @@ public class Paddle extends GameObject {
 	// paddles vertices and bytes
 	float[] vertices = {
 			
-		0.0f, HEIGHT, 0.0f,
 		0.0f, 0.0f, 0.0f,
-		WIDTH, 0.0f, 0.0f,
-		WIDTH, HEIGHT, 0.0f
+		0.0f, HEIGHT, 0.0f,
+		WIDTH, HEIGHT, 0.0f,
+		WIDTH, 0.0f, 0.0f
 			
 	};
 	
@@ -49,24 +49,48 @@ public class Paddle extends GameObject {
 		if (player.equals("player1")) {
 			
 			if (KeyboardInput.isKeyDown(GLFW_KEY_W))
-				position.y += 0.025f;
+				position.y += 0.040f;
 			
 			if (KeyboardInput.isKeyDown(GLFW_KEY_S))
-				position.y -= 0.025f;
+				position.y -= 0.040f;
 			
 		} // end if
 		
 		if (player.equals("player2")) {
 			
 			if (KeyboardInput.isKeyDown(GLFW_KEY_UP))
-				position.y += 0.025f;
+				position.y += 0.040f;
 			
 			if (KeyboardInput.isKeyDown(GLFW_KEY_DOWN))
-				position.y -= 0.025f;
+				position.y -= 0.040f;
 					
 		} // end if
 		
+		// Keeps the paddle from moving above the screen
+		if (position.y + HEIGHT >= 1.0f)
+			position.y = 0.99f - HEIGHT;
+		
+		// keeps the paddle from moving below the screen
+		if (position.y <= -1.0f)
+			position.y = -0.99f;
+		
 	} // end update
+	
+	public void moveAIUp() {
+		
+		position.y += 0.0344f;
+		if (position.y + HEIGHT >= 1.0f)
+			position.y = 0.99f - HEIGHT;
+		
+	} // end if
+	
+	public void moveAIDown() {
+		
+		position.y -= 0.0344f;
+		if (position.y <= -1.0f)
+			position.y = -0.99f;
+		
+	} // end if
 	
 	// updates the score for the player that scored
 	public void score() {
