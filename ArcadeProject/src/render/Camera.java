@@ -10,7 +10,7 @@ import org.joml.Vector3f;
 
 /**
  *
- * @author augus
+ * @author August B. Sandoval
  */
 public class Camera {
     private Vector3f position;

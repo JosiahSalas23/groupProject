@@ -30,16 +30,17 @@ public class Texture {
             bi = ImageIO.read(new File("./res/" +filename));
             width = bi.getWidth();
             height = bi.getHeight();
+            //System.out.printf("w: %d h:%d %d\n", width,height, width * height * 4);
             int[] pixels_raw = new int[width * height * 4];
             pixels_raw = bi.getRGB(0,0,width,height, null, 0, width);
             
             ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
             
-            for(int i = 0; i < width; i++){
-                for(int j = 0; j < height; j++){
+            for(int i = 0; i < height; i++){
+                for(int j = 0; j < width; j++){
                     int pixel = pixels_raw[i*width + j];
                     pixels.put( (byte) ((pixel >> 16) & 0xFF ) ); //Red
-                    pixels.put( (byte) ((pixel >> 8) & 0xFF ) ); // Grean
+                    pixels.put( (byte) ((pixel >> 8) & 0xFF ) ); // Green
                     pixels.put( (byte) (pixel & 0xFF ) ); // Blue
                     pixels.put( (byte) ((pixel >> 24) & 0xFF ) ); //Alpha
                 }
@@ -57,6 +58,7 @@ public class Texture {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
             
         }catch(IOException e){
+        	System.out.println("Failed to load immage");
             e.printStackTrace();
         }
         
