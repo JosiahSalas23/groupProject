@@ -56,7 +56,7 @@ public class GPlatform {
         TileRenderer tiles = new TileRenderer();
         
         Shader shader = new Shader("shader");
-       /* 
+        
         float[] vertices1 = new float[]{
             -1f, 1f,0, 
              1f, 1f,0,
@@ -75,16 +75,18 @@ public class GPlatform {
             0,1,2,
             2,3,0
         };
-        */
+        
         
         
         
         World world = new World();
         
-        Player player = new Player();
+       Player player = new Player();
+        Player Title = new Player(vertices1, texture1, indices, new Texture("TestTitle.jpg" ) );
+        //title.setTexture("TestTitle.jpg");
         //Player title = new Player();
         //title.setModel(vertices1, texture1, indices);
-        //title.setTexture(new Texture("TestTitle.jpg") );
+        //title.setTexture(new Texture("doge_1.jpg") );
 
         
         int xp=-720;
@@ -132,7 +134,7 @@ public class GPlatform {
                 }
                 //System.out.println("x: "+xp+" yp: "+yp);
                 
-                player.update((float)frame_cap, win, camera, world);
+                Title.update((float)frame_cap, win, camera, world);
                 
                 //title.update((float)frame_cap, win, camera, world);
                 
@@ -157,7 +159,7 @@ public class GPlatform {
                 //tex.bind(0);
                 //model.display();
                 //title.render(shader, camera);
-                player.render(shader, camera);
+                Title.render(shader, camera);
                 win.swapBuffers();
                 frames++;
             }

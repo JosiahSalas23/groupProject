@@ -25,6 +25,13 @@ public class Player {
     //private Animation animation
     private Transform transform;
     
+    public Player(float[] verts, float[] texture, int[] indices, Texture textures) {
+    	model = new Model(verts, texture, indices);
+    	tex = textures;
+        transform = new Transform();
+        transform.scale = new Vector3f(64,64,1);
+    }
+    
     public Player(){
         float[] vertices = new float[]{
             -1f, 1f,0,
