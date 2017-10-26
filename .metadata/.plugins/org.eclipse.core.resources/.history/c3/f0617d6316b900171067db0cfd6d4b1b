@@ -158,7 +158,6 @@ public class GPlatform {
                 world.render(tiles, shader,camera, win);
                 //tex.bind(0);
                 //model.display();
-                player.render(shader, camera);
                 //title.render(shader, camera);
                 Title.render(shader, camera);
                 win.swapBuffers();

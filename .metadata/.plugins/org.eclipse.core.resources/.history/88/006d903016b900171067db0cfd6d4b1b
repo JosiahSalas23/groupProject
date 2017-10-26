@@ -66,8 +66,8 @@ public class GPlatform {
         
         float[] texture1 = new float[]{
             0,0,
-            1,0,
-            1,1,
+            2,0,
+            2,1,
             0,1
         };
         
@@ -158,7 +158,6 @@ public class GPlatform {
                 world.render(tiles, shader,camera, win);
                 //tex.bind(0);
                 //model.display();
-                player.render(shader, camera);
                 //title.render(shader, camera);
                 Title.render(shader, camera);
                 win.swapBuffers();

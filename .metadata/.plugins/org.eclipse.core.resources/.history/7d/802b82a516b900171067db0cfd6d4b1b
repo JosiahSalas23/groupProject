@@ -58,10 +58,10 @@ public class GPlatform {
         Shader shader = new Shader("shader");
         
         float[] vertices1 = new float[]{
-            -2f, 1f,0, //upper left x,y
-             2f, 1f,0, //upper right x,y
-             2f,-1f,0, //lower right x,y
-            -2f,-1f,0  //lower left x,y
+            -1f, 1f,0, //upper left x,y
+             1f, 1f,0, //upper right x,y
+             1f,-1f,0, //lower right x,y
+            -1,-1f,0  //lower left x,y
             };
         
         float[] texture1 = new float[]{
