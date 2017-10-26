@@ -45,17 +45,20 @@ public class GPlatform {
         System.out.println(win.getWidth() + " " + win.getHeight() );
         
         int s = 256;
+        float winW = (float)win.getWidth()/s;
+        float winH = (float)win.getHeight()/(s*2);
         float[] BGverts = new float[]{
-            -(float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s,-(float)win.getHeight()/s ,0,
-            -(float)win.getWidth()/s,-(float)win.getHeight()/s ,0
+            -winW + winW*1.5f, winH - winH ,0,
+             winW + winW*1.5f, winH - winH ,0,
+             winW + winW*1.5f,-winH - winH ,0,
+            -winW + winW*1.5f,-winH - winH ,0
         };
 
 
         TileRenderer tiles = new TileRenderer();
         
         Shader shader = new Shader("shader");
+        
         
         float[] vertices1 = new float[]{
             -2f, 1f,0, //upper left x,y
@@ -82,7 +85,7 @@ public class GPlatform {
         World world = new World();
         
        Player player = new Player();
-        Player Title = new Player(vertices1, texture1, indices, new Texture("TestTitle.jpg" ) );
+        Player Title = new Player(BGverts, texture1, indices, new Texture("TestTitle.jpg" ) );
         //title.setTexture("TestTitle.jpg");
         //Player title = new Player();
         //title.setModel(vertices1, texture1, indices);
@@ -134,7 +137,7 @@ public class GPlatform {
                 }
                 //System.out.println("x: "+xp+" yp: "+yp);
                 
-                Title.update((float)frame_cap, win, camera, world);
+                player.update((float)frame_cap, win, camera, world);
                 
                 //title.update((float)frame_cap, win, camera, world);
                 

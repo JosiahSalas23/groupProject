@@ -1,0 +1,24 @@
+package Collision;
+
+import org.joml.Vector2f;
+
+public class AABB {
+	private Vector2f Center, Half_extent;
+	
+	public AABB(Vector2f center, Vector2f half_extent) {
+		Center = center;
+		Half_extent = Half_extent;
+		
+	}
+	public boolean inIntersecting(AABB box2) {
+		Vector2f distance = box2.Center.sub(Center, new Vector2f());
+		distance.x = (float)Math.abs(distance.x);
+		distance.y = (float)Math.abs(distance.y);
+		
+		distance.sub(Half_extent.add(box2.Half_extent),new Vector2f()); 
+		return (distance.x < 0 && distance.y < 0);
+	}
+	
+	public Vector2f getCenter() {return Center;}
+	public Vector2f getHalfExtenr() {return Half_extent;}
+}
