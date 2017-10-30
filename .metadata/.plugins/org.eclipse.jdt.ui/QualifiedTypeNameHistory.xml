@@ -3,4 +3,7 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="org.joml.Vector3f"/>
 <fullyQualifiedTypeName name="org.joml.Vector2f"/>
+<fullyQualifiedTypeName name="Collision.AABB"/>
+<fullyQualifiedTypeName name="Collision.Collision"/>
+<fullyQualifiedTypeName name="world.Tile"/>
 </qualifiedTypeNameHistroy>

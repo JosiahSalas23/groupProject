@@ -14,11 +14,13 @@ public class Tile {
     public static byte NoT = 0;
     
     public static final Tile text_tile = new Tile("nebula-space");
-    
+    public static final Tile text_tile2 = new Tile("nebula-space");
+    private boolean Solid;
     private byte ID;
     private String Texture;
     
     public Tile(String texture){
+    	Solid = false;
         ID = NoT;
         NoT++;
         Texture = texture;
@@ -34,4 +36,9 @@ public class Tile {
         return Texture;
     }
     
+    public Tile setSolid() {
+    	Solid = true;
+    	return this;
+    }
+    public boolean isSolid() { return Solid; }
 }

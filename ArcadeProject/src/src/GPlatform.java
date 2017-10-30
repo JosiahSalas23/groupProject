@@ -18,6 +18,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.*;
+
+import world.Tile;
 import world.TileRenderer;
 import world.World;
 /**
@@ -84,13 +86,13 @@ public class GPlatform {
         
         World world = new World();
         
-       Player player = new Player();
+        Player player = new Player();
         Player Title = new Player(BGverts, texture1, indices, new Texture("TestTitle.jpg" ) );
         //title.setTexture("TestTitle.jpg");
         //Player title = new Player();
         //title.setModel(vertices1, texture1, indices);
         //title.setTexture(new Texture("doge_1.jpg") );
-
+       // world.setTile(Tile.text_tile2,  5, 0);k
         
         int xp=-720;
         int yp=260;
