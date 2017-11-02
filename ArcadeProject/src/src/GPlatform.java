@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package src;
+import Entity.Entity;
 import Entity.Player;
+import Entity.Transform;
 import render.Texture;
+import render.Animation;
 import render.Camera;
 import render.Shader;
 import render.Model;
@@ -87,7 +90,8 @@ public class GPlatform {
         World world = new World();
         
         //Player player = new Player();
-        Player Title = new Player(BGverts, texture1, indices, new Texture("TestTitle.jpg" ) );
+        Entity.addModel(BGverts, texture1, indices);
+        Entity Title = new Entity( new Animation(1,1,"TestTitle"), new Transform(), 0 );
         //title.setTexture("TestTitle.jpg");
         //Player title = new Player();
         //title.setModel(vertices1, texture1, indices);
@@ -112,7 +116,7 @@ public class GPlatform {
             unprocessed += passed;
             frames_time += passed;
             time = time_2;
-            
+            System.out.println( xp + " " + yp  );
             while(unprocessed >= frame_cap){
                 if(win.hasResized()){
                     camera.setProjection(win.getWidth(), win.getHeight());
@@ -126,22 +130,28 @@ public class GPlatform {
                     glfwSetWindowShouldClose(win.getWindow(), true );
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_LEFT)){
-                    camera.getPosition().add(new Vector3f(1,0,0));
+                    //camera.getPosition().add(new Vector3f(1,0,0));
+                    xp -= 5;
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_RIGHT)){
-                    camera.getPosition().add(new Vector3f(-1,0,0));
+                    //camera.getPosition().add(new Vector3f(-1,0,0));
+                    xp += 5;
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_UP)){
-                    camera.getPosition().add(new Vector3f(0,-1,0));
+                   // camera.getPosition().add(new Vector3f(0,-1,0));
+                    yp += 5;
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_DOWN)){
-                    camera.getPosition().add(new Vector3f(0,1,0));
+                    //camera.getPosition().add(new Vector3f(0,1,0));
+                    yp -= 5;
                 }
                 //System.out.println("x: "+xp+" yp: "+yp);
                 
                 //player.update((float)frame_cap, win, camera, world);
+                Title.setTransform(new Transform( camera.getPosition() , new Vector3f(1,1,1) ));
+                Title.update((float)frame_cap, win, camera, world);
                 
-                //title.update((float)frame_cap, win, camera, world);
+                
                 
                 world.correctCamera(camera, win);
                 
@@ -154,18 +164,10 @@ public class GPlatform {
             }
             if(can_render){
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//                shader.bind();
-//                shader.setUniform("sampler", 0);
-//                shader.setUniform("projection", camera.getProjection().mul(target));
-                
-                //BGtex.bind(0);
-               // BG.display();
+
                 world.render(tiles, shader,camera, win);
-                //tex.bind(0);
-                //model.display();
-                player.render(shader, camera);
-                //title.render(shader, camera);
-                Title.render(shader, camera);
+                
+                Title.render(shader, camera, world);
                 win.swapBuffers();
                 frames++;
             }
