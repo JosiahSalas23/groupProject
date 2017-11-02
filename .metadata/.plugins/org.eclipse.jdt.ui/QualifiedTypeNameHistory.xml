@@ -6,4 +6,8 @@
 <fullyQualifiedTypeName name="Collision.AABB"/>
 <fullyQualifiedTypeName name="Collision.Collision"/>
 <fullyQualifiedTypeName name="world.Tile"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 </qualifiedTypeNameHistroy>

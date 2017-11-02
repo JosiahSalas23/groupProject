@@ -54,7 +54,7 @@ public class World {
 					try {
 						t = Tile.tiles[red];
 					}catch(ArrayIndexOutOfBoundsException e) {
-						t = null;
+						setTile(t,x,y);
 					}
 				}
 			}

@@ -10,7 +10,7 @@ package world;
  * @author August's PC
  */
 public class Tile {
-    public static Tile tiles[] = new Tile[255];
+    public static Tile tiles[] = new Tile[16];
     public static byte NoT = 0;
     
     public static final Tile text_tile = new Tile("nebula-space");

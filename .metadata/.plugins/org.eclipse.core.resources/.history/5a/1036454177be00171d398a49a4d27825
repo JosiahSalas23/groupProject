@@ -18,6 +18,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.*;
+
+import world.Tile;
 import world.TileRenderer;
 import world.World;
 /**
@@ -45,11 +47,13 @@ public class GPlatform {
         System.out.println(win.getWidth() + " " + win.getHeight() );
         
         int s = 256;
+        float winW = (float)win.getWidth()/s;
+        float winH = (float)win.getHeight()/(s*2);
         float[] BGverts = new float[]{
-            -(float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s,-(float)win.getHeight()/s ,0,
-            -(float)win.getWidth()/s,-(float)win.getHeight()/s ,0
+            -winW + winW*1.5f, winH - winH ,0,
+             winW + winW*1.5f, winH - winH ,0,
+             winW + winW*1.5f,-winH - winH ,0,
+            -winW + winW*1.5f,-winH - winH ,0
         };
 
 
@@ -57,11 +61,12 @@ public class GPlatform {
         
         Shader shader = new Shader("shader");
         
+        
         float[] vertices1 = new float[]{
-            -1f, 1f,0, 
-             1f, 1f,0,
-             1f,-1f,0,
-            -1f,-1f,0
+            -2f, 1f,0, //upper left x,y
+             2f, 1f,0, //upper right x,y
+             2f,-1f,0, //lower right x,y
+            -2f,-1f,0  //lower left x,y
             };
         
         float[] texture1 = new float[]{
@@ -82,10 +87,12 @@ public class GPlatform {
         World world = new World();
         
         Player player = new Player();
-        Player title = new Player();
-        title.setModel(vertices1, texture1, indices);
-        title.setTexture(new Texture("doge_1.jpg") );
-
+        Player Title = new Player(BGverts, texture1, indices, new Texture("TestTitle.jpg" ) );
+        //title.setTexture("TestTitle.jpg");
+        //Player title = new Player();
+        //title.setModel(vertices1, texture1, indices);
+        //title.setTexture(new Texture("doge_1.jpg") );
+       // world.setTile(Tile.text_tile2,  5, 0);k
         
         int xp=-720;
         int yp=260;
@@ -156,8 +163,9 @@ public class GPlatform {
                 world.render(tiles, shader,camera, win);
                 //tex.bind(0);
                 //model.display();
-                //title.render(shader, camera);
                 player.render(shader, camera);
+                //title.render(shader, camera);
+                Title.render(shader, camera);
                 win.swapBuffers();
                 frames++;
             }

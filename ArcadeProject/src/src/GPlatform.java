@@ -86,7 +86,7 @@ public class GPlatform {
         
         World world = new World();
         
-        Player player = new Player();
+        //Player player = new Player();
         Player Title = new Player(BGverts, texture1, indices, new Texture("TestTitle.jpg" ) );
         //title.setTexture("TestTitle.jpg");
         //Player title = new Player();
@@ -139,7 +139,7 @@ public class GPlatform {
                 }
                 //System.out.println("x: "+xp+" yp: "+yp);
                 
-                player.update((float)frame_cap, win, camera, world);
+                //player.update((float)frame_cap, win, camera, world);
                 
                 //title.update((float)frame_cap, win, camera, world);
                 
