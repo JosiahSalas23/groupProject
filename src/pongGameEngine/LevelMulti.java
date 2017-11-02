@@ -17,7 +17,7 @@ import pongGraphicEngine.ShaderManager;
 import pongInput.KeyboardInput;
 import pongText.Text;
 
-public class Level {
+public class LevelMulti {
 
 	public Paddle player1;
 	public Paddle player2;
@@ -32,7 +32,7 @@ public class Level {
 	
 	
 	// Create both players paddles and a ball
-	public Level() {
+	public LevelMulti() {
 		
 		shaderManager = new ShaderManager();
 		shaderManager.loadAll();
@@ -150,18 +150,7 @@ public class Level {
 		
 		player1.update("player1");
 		ball.update();
-		//player2.update("player2");
-		if (ball.movement.y > 0 && ball.position.y > player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
-			
-			player2.moveAIUp();
-			
-		} // end if
-		
-		if (ball.movement.y < 0 && ball.position.y < player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
-			
-			player2.moveAIDown();
-			
-		} // end if	
+		player2.update("player2");	
 		
 	} // end update
 	

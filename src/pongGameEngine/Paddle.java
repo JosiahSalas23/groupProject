@@ -83,7 +83,7 @@ public class Paddle extends GameObject {
 	
 	public void moveAIUp() {
 		
-		position.y += 0.033f;
+		position.y += 0.035f;
 		if (position.y + HEIGHT >= 1.0f)
 			position.y = 0.99f - HEIGHT;
 		
@@ -91,7 +91,7 @@ public class Paddle extends GameObject {
 	
 	public void moveAIDown() {
 		
-		position.y -= 0.034f;
+		position.y -= 0.036f;
 		if (position.y <= -1.0f)
 			position.y = -0.99f;
 		

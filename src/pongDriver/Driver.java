@@ -19,12 +19,19 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
-import org.newdawn.slick.TrueTypeFont;
-
 import pongGameEngine.Level;
+import pongGameEngine.LevelMulti;
+import pongGameEngine.MainMenu;
+import pongGameEngine.Pause;
 import pongInput.KeyboardInput;
 import pongInput.MouseInput;
+import pongText.Text;
 
+enum State {
+	
+	menu, play, pause
+	
+}; // end State
 
 public class Driver {
 
@@ -32,13 +39,20 @@ public class Driver {
 	public final int WIDTH = 1000;
 	public final int HEIGHT = 1000;
 	public long window;
-	public boolean pause;
+	public boolean single = false;
+	public boolean multi = false;
+	public boolean quit = false;
 	
 	private GLFWKeyCallback keyCallback;
 	private GLFWCursorPosCallback cursorCallback;
 	
+	public static State gameState = State.menu;
+	
 	// create paddles and the ball
-	Level gamePaddlesAndBall;
+	Level singlePlayerPong;
+	LevelMulti multiPlayerPong;
+	Pause pauseScreen;
+	MainMenu mainMenu;
 	
 	
 	public void init() {
@@ -75,7 +89,10 @@ public class Driver {
 		GL.createCapabilities();
 		//System.out.println("OpenGL: " + glGetString(GL_VERSION));
 		
-		gamePaddlesAndBall = new Level();
+		singlePlayerPong = new Level();
+		multiPlayerPong = new LevelMulti();
+		pauseScreen = new Pause();
+		mainMenu = new MainMenu();
 		
 	} // end init
 	
@@ -83,9 +100,42 @@ public class Driver {
 		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		gamePaddlesAndBall.draw();
 		
-		glfwSwapBuffers(window);
+		switch(gameState) {
+		
+		   case menu:
+			   mainMenu.draw();
+			   glfwSwapBuffers(window);
+			   break;
+			   
+		   case play:
+			   if (single)
+				   singlePlayerPong.draw();
+			   
+			   if (multi)
+				   multiPlayerPong.draw();
+			   
+			   glfwSwapBuffers(window);
+			   break;
+			   
+		   case pause:
+			   if (single)
+				   singlePlayerPong.draw();
+			   
+			   if (multi)
+				   multiPlayerPong.draw();
+			   pauseScreen.draw();
+			   glfwSwapBuffers(window);
+			   break;
+			   
+			   default:
+				   // call main menu
+				   glfwSwapBuffers(window);
+				   break;
+		
+		
+		} // end switch
+		
 		
 	} // end render
 
@@ -94,7 +144,79 @@ public class Driver {
 		
 		glfwPollEvents();
 		
-		gamePaddlesAndBall.update();
+		
+		switch(gameState) {
+		
+		   case menu:
+			   mainMenu.update();
+			   if (mainMenu.singlePlayer) {
+				   
+				   gameState = State.play;
+				   singlePlayerPong = new Level();
+				   single = true;
+				   multi = false;
+				   mainMenu.singlePlayer = false;
+				   
+			   } // end if
+			   
+			   if (mainMenu.multiPlayer) {
+				   
+				   gameState = State.play;
+				   multiPlayerPong = new LevelMulti();
+				   single = false;
+				   multi = true;
+				   mainMenu.multiPlayer = false;
+				   
+			   } // end if
+			   
+			   break;
+			   
+		   case play:
+			   
+			   if (single)
+				   singlePlayerPong.update();
+			   
+			   if (multi)
+				   multiPlayerPong.update();
+			   
+				if (singlePlayerPong.pause == true) {
+					
+					gameState = State.pause;
+					singlePlayerPong.pause = false;
+					
+				} // end if
+				
+				if (multiPlayerPong.pause == true) {
+					
+					gameState = State.pause;
+					multiPlayerPong.pause = false;
+					
+				} // end if
+			   break;
+			   
+		   case pause:
+			   // dont update game but still draw objects
+			   pauseScreen.update();
+			   if (pauseScreen.unPause == true) {
+				   
+				   gameState = State.play;
+				   pauseScreen.unPause = false;
+				   
+			   } // end if
+			   
+			   if (pauseScreen.toMenu == true) {
+				   
+				   gameState = State.menu;
+				   pauseScreen.toMenu = false;
+				   
+			   } // end if
+			   break;
+			   
+		   default:
+			   break;
+		
+		} // end switch
+		
 
 	} // end update
 	
@@ -136,13 +258,28 @@ public class Driver {
 			
 			if (glfwWindowShouldClose(window) == true) {
 				
+				single = false;
+				multi = false;
+				gameState = State.menu;
 				isRunning = false;
 				
 			} // end if
 			
 			// game ends once the score limit is reached
-			if ((gamePaddlesAndBall.player1.getScore() == 7) || (gamePaddlesAndBall.player2.getScore() == 7)) {
+			if ((singlePlayerPong.player1.getScore() == 7) || (singlePlayerPong.player2.getScore() == 7)) {
 				
+				single = false;
+				multi = false;
+				gameState = State.menu;
+				isRunning = false;
+				
+			} // end if
+			
+			if ((multiPlayerPong.player1.getScore() == 7) || (multiPlayerPong.player2.getScore() == 7)) {
+				
+				single = false;
+				multi = false;
+				gameState = State.menu;
 				isRunning = false;
 				
 			} // end if
@@ -150,7 +287,7 @@ public class Driver {
 		} // end while
 		
 		glfwDestroyWindow(window);
-		
+
 	} // end run
 	
 } // end class Driver
