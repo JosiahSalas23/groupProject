@@ -15,6 +15,7 @@ public class GamesLauncher {
 		
 		System.out.println("Game Launcher");
 		Driver driver = new Driver();
+		PrototypeMenuDriver menu = new PrototypeMenuDriver();
 		Scanner scan = new Scanner (System.in);
 		String answer;
 		boolean playAgain = true;
@@ -26,7 +27,6 @@ public class GamesLauncher {
 			switch(Game) {
 			
 			case pong:
-				
 				driver.run();
 				Game = state.selection;
 				break;
@@ -36,14 +36,26 @@ public class GamesLauncher {
 				break;
 				
 			case selection:
-				System.out.println("What game would you like to play? Options: 'Pong', 'maze', 'quit'");
-				answer = scan.nextLine();
-				if (answer.equalsIgnoreCase("pong"))
+				menu.run();
+				if (PrototypeMenuDriver.pongSelection) {
+					
+					PrototypeMenuDriver.pongSelection = false;
 					Game = state.pong;
-				if (answer.equalsIgnoreCase("maze"))
+					
+				} // end if
+				if (PrototypeMenuDriver.mazeSelection) {	
+					
+					PrototypeMenuDriver.mazeSelection = false;
 					Game = state.maze;
-				if (answer.equalsIgnoreCase("quit"))
+					
+				} // end if
+				
+				if (PrototypeMenuDriver.quitSelection) {
+					
+					PrototypeMenuDriver.quitSelection = false;
 					Game = state.quit;
+					
+				} // end if
 				break;
 				
 			case maze:
