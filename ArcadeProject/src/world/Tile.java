@@ -13,7 +13,7 @@ public class Tile {
     public static Tile tiles[] = new Tile[255];
     public static byte NoT = 0;
     
-    public static final Tile text_tile = new Tile("nebula-space");
+    public static final Tile text_tile = new Tile("/anim/doge_0");
     public static final Tile text_tile2 = new Tile("nebula-space");
     private boolean Solid;
     private byte ID;

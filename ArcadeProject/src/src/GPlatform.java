@@ -41,7 +41,7 @@ public class GPlatform {
         //glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         
         Window win = new Window();
-        win.createWindow("Much game. So show off. wow!");
+        win.createWindow("Main Menu: such profesional");
         
         
         GL.createCapabilities();
@@ -118,8 +118,8 @@ public class GPlatform {
         butt2.getTransform().pos.add( new Vector3f(-1.5f,-2.0f,0) );
 
         
-        int xp=-720;
-        int yp=260;
+        //int xp=-720;
+        //int yp=260;
         //camera.setPosition(new Vector3f(xp,yp,0));
         //projection.mul(scale, target);
         
