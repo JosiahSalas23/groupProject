@@ -1,0 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Entity;
+
+import org.joml.Vector3f;
+
+import io.Window;
+import render.Animation;
+import render.Camera;
+import world.World;
+
+/**
+ *
+ * @author August's PC
+ */
+public class GUI extends Entity{
+
+	
+	public GUI(String file,Transform transform, int ID) {
+		super(new Animation(1,1,file), transform, ID);
+	}
+	public void update(Window window, Camera camera, World world) {
+		//Vector3f pos = camera.getPosition();
+		
+		//int W = -world.getWidth()  * world.getScale() * 2;
+		//int H =  world.getHeight() * world.getScale() * 2;
+		
+		transform.pos.x = (window.getWidth()/2) + world.getScale();
+	}
+}

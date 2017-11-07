@@ -1,0 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Entity;
+
+import render.Animation;
+
+/**
+ *
+ * @author August's PC
+ */
+public class GUI extends Entity{
+
+	
+	public GUI(String file,Transform transform, int ID) {
+		super(new Animation(1,1,file), transform, ID);
+		
+	}
+}

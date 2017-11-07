@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="org.joml.Vector3f"/>
 <fullyQualifiedTypeName name="org.joml.Vector2f"/>
 <fullyQualifiedTypeName name="Collision.AABB"/>
 <fullyQualifiedTypeName name="Collision.Collision"/>
@@ -11,8 +10,13 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 <fullyQualifiedTypeName name="org.joml.Matrix4f"/>
-<fullyQualifiedTypeName name="render.Animation"/>
 <fullyQualifiedTypeName name="Entity.Entity"/>
 <fullyQualifiedTypeName name="Entity.Transform"/>
+<fullyQualifiedTypeName name="render.Animation"/>
+<fullyQualifiedTypeName name="world.World"/>
+<fullyQualifiedTypeName name="render.Camera"/>
+<fullyQualifiedTypeName name="io.Window"/>
+<fullyQualifiedTypeName name="org.joml.Vector3f"/>
+<fullyQualifiedTypeName name="Entity.GUI"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

@@ -32,12 +32,12 @@ public class World {
     
     public World(String world) {
     	try {
-			BufferedImage tile_sheet = ImageIO.read(new File("./levels/" + world + "_tiles.png") );
+			BufferedImage tile_sheet =   ImageIO.read(new File("./levels/" + world + "_tiles.png") );
 			BufferedImage entity_sheet = ImageIO.read(new File("./levels/" + world + "_entity.png") );
     	
 			width = tile_sheet.getWidth();
 			height = tile_sheet.getHeight();
-			scale = 16;
+			scale = 128;
 			
 			this.world = new Matrix4f().setTranslation(new Vector3f(0));
 			this.world.scale(scale);
@@ -61,14 +61,16 @@ public class World {
 			
     	} catch (IOException e) {
 			// TODO Auto-generated catch block
+    		System.out.println("could not open file");
 			e.printStackTrace();
+			
 		}
     }
     
     public World(){
         width = 16;
         height = 16;
-        scale = 64;
+        scale = 128;
         tiles = new byte[width * height];
         bounding_boxes = new AABB[width * height];
         world = new Matrix4f().setTranslation(new Vector3f(0));
@@ -129,5 +131,10 @@ public class World {
             return null;
         }
     }
-    public int getScale(){ return scale;}
+    public void setScale(int s) {
+    	scale = s;	
+    }
+    public int getScale()  { return scale;}
+    public int getWidth()  { return width;}
+    public int getHeight() { return height;}
 }

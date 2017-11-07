@@ -24,8 +24,8 @@ public class Entity {
 
     private static ArrayList<Model> models = new ArrayList<Model>();
     private AABB bounding_box;
-    private Animation texture;
-    private Transform transform;
+    protected Animation texture;
+    protected Transform transform;
     private int Model_ID;
     
     public Entity(Animation animation, Transform transform, int ID) {
@@ -107,7 +107,7 @@ public class Entity {
 	                	transform.pos.set(bounding_box.getCenter(),0);
 	                }
                 }
-                camera.getPosition().lerp(transform.pos.mul(-world.getScale(), new Vector3f()) , 0.1f );
+                camera.getPosition().lerp(transform.pos.mul(-world.getScale(), new Vector3f()) , 1f );
                 //camera.setPosition(transform.pos.mul(-world.getScale(), new Vector3f() ));
     }
     

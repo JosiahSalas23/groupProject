@@ -5,6 +5,7 @@
  */
 package src;
 import Entity.Entity;
+import Entity.GUI;
 import Entity.Player;
 import Entity.Transform;
 import render.Texture;
@@ -48,10 +49,11 @@ public class GPlatform {
         
         Camera camera = new Camera(win.getWidth(), win.getHeight());
         System.out.println(win.getWidth() + " " + win.getHeight() );
+        World world = new World("Test");
         
-        int s = 256;
-        float winW = (float)win.getWidth()/s;
-        float winH = (float)win.getHeight()/(s*2);
+        int s = world.getScale()/4;
+        float winW = (float)win.getWidth()/(s);
+        float winH = (float)win.getHeight()/(s);
         float[] BGverts = new float[]{
             -winW + winW*1.5f, winH - winH ,0,
              winW + winW*1.5f, winH - winH ,0,
@@ -64,13 +66,27 @@ public class GPlatform {
         
         Shader shader = new Shader("shader");
         
-        
+        System.out.println( camera.getPosition() );
         float[] vertices1 = new float[]{
-            -2f, 1f,0, //upper left x,y
-             2f, 1f,0, //upper right x,y
-             2f,-1f,0, //lower right x,y
-            -2f,-1f,0  //lower left x,y
+              -1f + winW/s + 1f ,0.5f - winH/s ,0,
+               1f + winW/s + 1f , 0.5f - winH/s ,0,
+               1f + winW/s + 1f ,-0.5f - winH/s ,0,
+              -1f + winW/s + 1f ,-0.5f - winH/s ,0
             };
+        
+        float[] vertices2 = new float[]{
+                -1f + winW/(s*0.5f) + 1f , 0.5f - winH/(s*0.5f) ,0,
+                 1f + winW/(s*0.5f) + 1f , 0.5f - winH/(s*0.5f) ,0,
+                 1f + winW/(s*0.5f) + 1f ,-0.5f - winH/(s*0.5f) ,0,
+                -1f + winW/(s*0.5f) + 1f ,-0.5f - winH/(s*0.5f) ,0
+              };
+        
+        float[] vertices3 = new float[]{
+                -1.5f + winW/(s*0.5f) + 1f , 0.5f - winH/(s*0.5f) ,0,
+                 1.5f + winW/(s*0.5f) + 1f , 0.5f - winH/(s*0.5f) ,0,
+                 1.5f + winW/(s*0.5f) + 1f ,-0.5f - winH/(s*0.5f) ,0,
+                -1.5f + winW/(s*0.5f) + 1f ,-0.5f - winH/(s*0.5f) ,0
+              };
         
         float[] texture1 = new float[]{
             0,0,
@@ -87,20 +103,24 @@ public class GPlatform {
         
         
         
-        World world = new World();
-        
+
+        Entity.addModel( vertices1,texture1, indices );
+        Entity.addModel( vertices2,texture1, indices );
+        Entity.addModel( vertices3,texture1, indices );
+        Entity emp = new Entity( new Animation(1,1,"doge"), new Transform(), 1);
         //Player player = new Player();
-        Entity.addModel(BGverts, texture1, indices);
-        Entity Title = new Entity( new Animation(1,1,"TestTitle"), new Transform(), 0 );
-        //title.setTexture("TestTitle.jpg");
-        //Player title = new Player();
-        //title.setModel(vertices1, texture1, indices);
-        //title.setTexture(new Texture("doge_1.jpg") );
-       // world.setTile(Tile.text_tile2,  5, 0);k
+        GUI Title = new GUI( "TestTitle", new Transform(), 2 );
+        GUI butt1 = new GUI( "Button1", new Transform(), 0 );
+        GUI butt2 = new GUI( "Button1", new Transform(), 0 );
+        emp.getTransform().pos.add( new Vector3f(.15f, 0,0) );
+        Title.getTransform().pos.add( new Vector3f(-2f, 1f,0) );
+        butt1.getTransform().pos.add( new Vector3f(-1.5f, -.8f ,0) );
+        butt2.getTransform().pos.add( new Vector3f(-1.5f,-2.0f,0) );
+
         
         int xp=-720;
         int yp=260;
-        camera.setPosition(new Vector3f(xp,yp,0));
+        //camera.setPosition(new Vector3f(xp,yp,0));
         //projection.mul(scale, target);
         
         double frame_cap = 1.0/60.0; //limits to 60 FPS
@@ -116,7 +136,7 @@ public class GPlatform {
             unprocessed += passed;
             frames_time += passed;
             time = time_2;
-            System.out.println( xp + " " + yp  );
+
             while(unprocessed >= frame_cap){
                 if(win.hasResized()){
                     camera.setProjection(win.getWidth(), win.getHeight());
@@ -129,31 +149,16 @@ public class GPlatform {
                 if(win.getInput().isKeyPressed(GLFW_KEY_ESCAPE)){             
                     glfwSetWindowShouldClose(win.getWindow(), true );
                 }
-                if(win.getInput().isKeyDown(GLFW_KEY_LEFT)){
-                    //camera.getPosition().add(new Vector3f(1,0,0));
-                    xp -= 5;
-                }
-                if(win.getInput().isKeyDown(GLFW_KEY_RIGHT)){
-                    //camera.getPosition().add(new Vector3f(-1,0,0));
-                    xp += 5;
-                }
-                if(win.getInput().isKeyDown(GLFW_KEY_UP)){
-                   // camera.getPosition().add(new Vector3f(0,-1,0));
-                    yp += 5;
-                }
-                if(win.getInput().isKeyDown(GLFW_KEY_DOWN)){
-                    //camera.getPosition().add(new Vector3f(0,1,0));
-                    yp -= 5;
-                }
-                //System.out.println("x: "+xp+" yp: "+yp);
+                emp.getTransform().pos.add( new Vector3f(  (float)(1* frame_cap),0,0)  );
+                Title.getTransform().pos.add( new Vector3f(  (float)(1* frame_cap),0,0)  );
+                butt1.getTransform().pos.add( new Vector3f(  (float)(1* frame_cap),0,0)  );
+                butt2.getTransform().pos.add( new Vector3f(  (float)(1* frame_cap),0,0)  );
+
                 
-                //player.update((float)frame_cap, win, camera, world);
-                Title.setTransform(new Transform( camera.getPosition() , new Vector3f(1,1,1) ));
-                Title.update((float)frame_cap, win, camera, world);
-                
-                
-                
+                emp.update((float)frame_cap, win, camera, world);
                 world.correctCamera(camera, win);
+                //Title.update(win, camera, world);
+                
                 
                 win.update();
                 if(frames_time >= 1.0){
@@ -168,6 +173,9 @@ public class GPlatform {
                 world.render(tiles, shader,camera, win);
                 
                 Title.render(shader, camera, world);
+                butt1.render(shader, camera, world);
+                butt2.render(shader, camera, world);
+                //emp.render(shader, camera, world);
                 win.swapBuffers();
                 frames++;
             }
