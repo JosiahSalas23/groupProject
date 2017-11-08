@@ -8,8 +8,6 @@ package world;
 import java.util.HashMap;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-
-import render.Animation;
 import render.Camera;
 import render.Model;
 import render.Shader;
@@ -20,11 +18,11 @@ import render.Texture;
  * @author August's PC
  */
 public class TileRenderer {
-    private HashMap<String, Animation> tile_textures;
+    private HashMap<String, Texture> tile_textures;
     private Model model;
     
     public TileRenderer(){
-        tile_textures = new HashMap<String, Animation>();
+        tile_textures = new HashMap<String, Texture>();
         float[] vertices = new float[]{
             -1f, 1f,0,
              1f, 1f,0,
@@ -49,8 +47,7 @@ public class TileRenderer {
             if(Tile.tiles[i]!= null){
                 if(!tile_textures.containsKey(Tile.tiles[i].getTexture() ) ){
                     String tex = Tile.tiles[i].getTexture();
-                    //tile_textures.put(tex, new Texture(tex + ".png")  );
-                    tile_textures.put(tex, new Animation(20,20,tex)  );
+                    tile_textures.put(tex, new Texture(tex + ".png")  );
                 }
             }
         }
