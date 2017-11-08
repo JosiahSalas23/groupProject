@@ -3,6 +3,8 @@ package world;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -11,9 +13,13 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import collision.AABB;
+import entity.Entity;
+import entity.Player;
 import io.Window;
+import render.Animation;
 import render.Camera;
 import render.Shader;
+import entity.Transform;
 
 public class World {
 	private final int view = 24;
@@ -22,6 +28,7 @@ public class World {
 	private int width;
 	private int height;
 	private int scale;
+	private List<Entity> entities;
 	
 	private Matrix4f world;
 	
@@ -41,6 +48,7 @@ public class World {
 			
 			tiles = new byte[width * height];
 			bounding_boxes = new AABB[width * height];
+			entities = new ArrayList<Entity>();
 			
 			for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
@@ -57,6 +65,9 @@ public class World {
 						setTile(t, x, y);
 				}
 			}
+			
+			//add player.
+			entities.add(new Player(new Transform()));
 			
 			
 		} catch (IOException e) {
@@ -76,6 +87,10 @@ public class World {
 		world.scale(scale);
 	}
 	
+	public Matrix4f getWorldMatrix() {
+		return world;
+	}
+	
 	public void render(TileRenderer render, Shader shader, Camera cam, Window window) {
 		int posX = ((int)cam.getPosition().x + (window.getWidth()/2)) / (scale * 2);
 		int posY = ((int)cam.getPosition().y - (window.getHeight()/2)) / (scale * 2);
@@ -88,6 +103,28 @@ public class World {
 			}
 		}
 		
+		//render each entity.
+		for(Entity entity : entities) {
+			entity.render(shader, cam, this);
+		}
+		
+	}
+	
+	public void update(float delta, Window window, Camera camera) {
+		//iterate and update all entities of entity list.
+		for(Entity entity : entities) {
+			entity.update(delta, window, camera, this);
+		}
+		
+		for(int i = 0; i < entities.size(); i++) {
+			entities.get(i).collideWithTiles(this);
+			for(int j = i+1; j < entities.size(); j++) {
+				entities.get(i).collideWithEntity(entities.get(j));
+			}
+			entities.get(i).collideWithTiles(this);
+		}
+		
+
 	}
 	
 	public void correctCamera(Camera camera, Window window) {

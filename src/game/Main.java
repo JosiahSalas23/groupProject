@@ -1,25 +1,18 @@
 
 package game;
 
+
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.*;
 
 import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 
 import collision.AABB;
-import collision.Collision;
-
-import entity.Player;
+import entity.Entity;
 import io.Timer;
 import io.Window;
 import render.Camera;
@@ -53,10 +46,17 @@ public class Main {
 		
 		GL.createCapabilities();
 		
+		//blend player texture to fit better with background.
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		
 		Camera camera = new Camera(window.getWidth(), window.getHeight());
 		glEnable(GL_TEXTURE_2D);
 		
 		TileRenderer tiles = new TileRenderer();
+		
+		Entity.initAsset();
 		
 //		float[] vertices = new float[] {
 //				-1f, 1f, 0, //TOP LEFT     0
@@ -82,14 +82,76 @@ public class Main {
 		
 		World world = new World("test_level");
 		
-		Player player = new Player();
 		
-		world.setTile(Tile.test2, 6, 0);
 		world.setTile(Tile.test2, 6, 0);
 		world.setTile(Tile.test2, 7, 0);
-		world.setTile(Tile.test2, 7, 1);
-		world.setTile(Tile.test2, 7, 2);
+		world.setTile(Tile.test2, 8, 0);
+		world.setTile(Tile.test2, 9, 0);
 		
+		
+		world.setTile(Tile.test2, 6, 5);
+		world.setTile(Tile.test2, 5, 5);
+		world.setTile(Tile.test2, 5, 2);
+		world.setTile(Tile.test2, 5, 3);
+		world.setTile(Tile.test2, 7, 4);
+		
+		world.setTile(Tile.test2, 4, 2);
+		world.setTile(Tile.test2, 4, 3);
+		world.setTile(Tile.test2, 4, 4);
+		world.setTile(Tile.test2, 4, 5);
+		world.setTile(Tile.test2, 10, 0);
+		
+		world.setTile(Tile.test2, 11, 0);
+		world.setTile(Tile.test2, 12, 0);
+		world.setTile(Tile.test2, 12, 1);
+		world.setTile(Tile.test2, 13, 1);
+		world.setTile(Tile.test2, 13, 2);
+		
+		world.setTile(Tile.test2, 14, 2);
+		world.setTile(Tile.test2, 15, 2);
+		world.setTile(Tile.test2, 16, 2);
+		world.setTile(Tile.test2, 17, 2);
+		world.setTile(Tile.test2, 18, 2);
+		
+		world.setTile(Tile.test2, 18, 3);
+		world.setTile(Tile.test2, 18, 4);
+		world.setTile(Tile.test2, 18, 5);
+		world.setTile(Tile.test2, 18, 6);
+		world.setTile(Tile.test2, 18, 7);
+		world.setTile(Tile.test2, 18, 8);
+		world.setTile(Tile.test2, 18, 9);
+		world.setTile(Tile.test2, 18, 10);
+		world.setTile(Tile.test2, 18, 11);
+		world.setTile(Tile.test2, 18, 12);
+		
+		world.setTile(Tile.test2, 18, 13);
+		world.setTile(Tile.test2, 18, 14);
+		world.setTile(Tile.test2, 18, 15);
+		world.setTile(Tile.test2, 18, 16);
+		world.setTile(Tile.test2, 18, 17);
+		world.setTile(Tile.test2, 18, 18);
+		world.setTile(Tile.test2, 18, 19);
+		world.setTile(Tile.test2, 18, 20);
+		world.setTile(Tile.test2, 18, 21);
+		world.setTile(Tile.test2, 18, 22);
+		
+		world.setTile(Tile.test2, 17, 20);
+		world.setTile(Tile.test2, 16, 20);
+		world.setTile(Tile.test2, 15, 20);
+		world.setTile(Tile.test2, 14, 20);
+		world.setTile(Tile.test2, 13, 20);
+		world.setTile(Tile.test2, 12, 20);
+		world.setTile(Tile.test2, 11, 20);
+		world.setTile(Tile.test2, 10, 20);
+		
+		world.setTile(Tile.test2,  9, 20);
+		world.setTile(Tile.test2, 9, 19);
+		world.setTile(Tile.test2, 9, 18);
+		world.setTile(Tile.test2, 9, 17);
+		world.setTile(Tile.test2, 9, 16);
+		world.setTile(Tile.test2, 9, 15);
+		world.setTile(Tile.test2, 11, 20);
+		world.setTile(Tile.test2, 10, 20);
 		double frame_cap = 1.0/60.0;
 		
 		double frame_time = 0;
@@ -116,7 +178,7 @@ public class Main {
 				//	glfwSetWindowShouldClose(window.getWindow(), GL_TRUE);
 				}
 				
-				player.update((float)frame_cap, window, camera, world);
+				world.update((float)frame_cap, window, camera);
 				
 				world.correctCamera(camera, window);
 				
@@ -140,12 +202,12 @@ public class Main {
 				
 				world.render(tiles, shader, camera, window);
 				
-				player.render(shader, camera);
-				
 				window.swapBuffers();
 				frames++;
 			}
 		}
+		
+		Entity.deleteAsset();
 		
 		glfwTerminate();
 	}
