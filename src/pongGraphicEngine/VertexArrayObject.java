@@ -2,6 +2,9 @@
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=rXh7HBoJa44&t=819s&index=4&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL11.*;

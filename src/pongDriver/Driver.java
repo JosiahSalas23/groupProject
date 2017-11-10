@@ -1,9 +1,14 @@
 // This class creates a window for pong and renders/updates objects in 60FPS.
+// There is a level object for single player, levelMulti for multipler, Pause for the pause screen, and MainMenu for the main menu.
+// This class determines what state the game is in (main menu, pause, single player, etc) and updates and draws accordingly.
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=msGMaQbRbQc&index=2&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Another Video Here
 // https://www.youtube.com/watch?v=m4Gal_OERns&t=1s&index=9&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package pongDriver;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -48,7 +53,6 @@ public class Driver {
 	
 	public static State gameState = State.menu;
 	
-	// create paddles and the ball
 	Level singlePlayerPong;
 	LevelMulti multiPlayerPong;
 	Pause pauseScreen;
@@ -76,7 +80,7 @@ public class Driver {
 		} // end if
 		
 		glfwSetKeyCallback(window, keyCallback = new KeyboardInput());
-		//glfwSetCursorPosCallback(window, cursorCallback = new MouseInput());
+		//pglfwSetCursorPosCallback(window, cursorCallback = new MouseInput());
 		
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		
@@ -143,7 +147,6 @@ public class Driver {
 	public void update() {
 		
 		glfwPollEvents();
-		
 		
 		switch(gameState) {
 		

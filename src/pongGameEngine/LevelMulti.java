@@ -1,4 +1,6 @@
-// This class purpose is to initialize the ball and each players paddle for pong, as well as update and draw them. It handles all of the logic for this level.
+// This class purpose is to initialize all of the objects for pong as well as update and draw them, 
+// when the state of the game is (play) and the user selects the multiplayer option.
+// It handles multiplayer logic.
 // This class will help keep the code clean in our driver class because we don't have to call each individual function.
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
@@ -7,6 +9,8 @@
 // https://www.youtube.com/watch?v=Y3dbT-H_p20&index=8&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // another video here
 // https://www.youtube.com/watch?v=4CWXcWTsxog&index=10&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
 
 package pongGameEngine;
 

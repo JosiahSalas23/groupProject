@@ -1,8 +1,10 @@
-// date 10/31/17
-// This class draws text on the screen for pong. To use it Simply call Text.drawString(String, float positionX, float positionY, float scale, float width)
+// This class draws text on the screen for pong. 
+// To use it Simply call Text.drawString(String, float positionX, float positionY, float scale, float width)
 // This class was copied from stackoverflow.com and it was written by the user "Hello World"
 // Link of Source here
 // https://stackoverflow.com/questions/21960902/how-do-you-render-2d-text-in-lwjgl
+// Date written/modified: November 2017
+
 
 package pongText;
 

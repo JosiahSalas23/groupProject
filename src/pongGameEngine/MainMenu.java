@@ -1,3 +1,10 @@
+// This class is the main menu interface for the game Pong. This class will be used when the game state is (menu). 
+// This class draws simple text asking the user to input a command to
+// either play singleplayer or multiplayer. This class has two boolean variables(singePlayer, multiPlayer) that the Driver class will
+// use to switch the state of the game to (play) and to determine to run the Level class or LevelMulti class.
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_N;
@@ -20,6 +27,8 @@ public class MainMenu {
 			   singlePlayer = true;
 				
 			} // end if
+		
+		
 		
 		if (KeyboardInput.isKeyDown(GLFW_KEY_M)) {
 			

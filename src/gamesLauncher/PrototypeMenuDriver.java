@@ -1,17 +1,18 @@
-// This class creates a window and has the main in it.
+// This class is the driver for the prototype main GUI. It creates the window for the main GUI and has static boolean flag variables
+// that determine what state the program should switch to.
+// Date written/modified: November 2017
+// Author: Josiah Salas
 package gamesLauncher;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 
-import pongGameEngine.Level;
 import selectionScreenInput.KeyboardInput;
 
 public class PrototypeMenuDriver {
@@ -20,14 +21,15 @@ public class PrototypeMenuDriver {
 	public final int WIDTH = 1000;
 	public final int HEIGHT = 1000;
 	public long window;
+	
+	// Static boolean variables that the GamesLauncher class will be using to switch states of the program.
 	public static boolean pongSelection = false;
 	public static boolean mazeSelection = false;
 	public static boolean quitSelection = false;
 	
 	private GLFWKeyCallback keyCallback;
-	private GLFWCursorPosCallback cursorCallback;
 	
-	// create paddles and the ball
+	// creates the Main GUI. 
 	PrototypeMenuGUI menu;
 	
 	public void init() {
@@ -51,7 +53,6 @@ public class PrototypeMenuDriver {
 		} // end if
 		
 		glfwSetKeyCallback(window, keyCallback = new KeyboardInput());
-		//glfwSetCursorPosCallback(window, cursorCallback = new MouseInput());
 		
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		
@@ -89,9 +90,6 @@ public class PrototypeMenuDriver {
 	public void run() {
 		
 		init();
-		quitSelection = false;
-		pongSelection = false;
-		mazeSelection = false;
 		PrototypeMenuGUI.pong = false;
 		long lastTime = System.nanoTime();
 		double delta = 0.0;
@@ -133,7 +131,9 @@ public class PrototypeMenuDriver {
 				
 			} // end if
 			
-			// game ends once the score limit is reached
+			
+			// If the user selected the pong option. Set pongSelection static boolean variable to true and exit out of the loop.
+			// so it can close this window
 			if (PrototypeMenuGUI.pong) {
 				
 				pongSelection = true;
@@ -141,6 +141,9 @@ public class PrototypeMenuDriver {
 				
 			} // end if
 			
+			
+			// If the user selected the maze option. Set mazeSelection static boolean variable to true and exit out of the loop.
+			// so it can close this window
 			if (PrototypeMenuGUI.maze) {
 				
 				mazeSelection = true;
@@ -149,6 +152,8 @@ public class PrototypeMenuDriver {
 				
 			} // end if
 			
+			// If the user selected the quit option. Set quitSelection static boolean variable to true and exit out of the loop.
+			// so it can close this window
 			if (PrototypeMenuGUI.quit) {
 				
 				quitSelection = true;

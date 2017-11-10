@@ -4,6 +4,8 @@
 // https://www.youtube.com/watch?v=2aQ02MDbaaQ&index=5&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // another video here
 // https://www.youtube.com/watch?v=4CWXcWTsxog&index=10&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: October 2017
+// Author: Josiah Salas
 
 package pongUtils;
 

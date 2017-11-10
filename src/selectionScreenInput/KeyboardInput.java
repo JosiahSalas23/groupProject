@@ -1,7 +1,10 @@
-// This class handles keyboard input
+// This class handles keyboard input for the Prototype main GUI
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=RvvkfJytRIU&index=3&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package selectionScreenInput;
 
 import org.lwjgl.glfw.GLFWKeyCallback;

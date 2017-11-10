@@ -1,8 +1,12 @@
+// This class handles utilities for pong
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=rXh7HBoJa44&t=819s&index=4&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Another video
 // https://www.youtube.com/watch?v=_rjSel-6K38&index=7&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package pongUtils;
 
 import org.lwjgl.BufferUtils;

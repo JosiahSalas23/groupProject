@@ -1,7 +1,9 @@
-// This class creates a shader for the given object
+// This class creates a shader for the given object for pong.
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=_rjSel-6K38&index=7&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: October 2017
+// Author: Josiah Salas
 package pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL20.*;

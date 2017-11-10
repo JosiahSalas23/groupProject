@@ -1,7 +1,9 @@
-// This class creates all the shaders for each object
+// This class creates all the shaders for each object for pong
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=_rjSel-6K38&index=7&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
 package pongGraphicEngine;
 
 public class ShaderManager {

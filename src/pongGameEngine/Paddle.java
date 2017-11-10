@@ -1,9 +1,13 @@
-// This class creates a paddle object and updates(handles player input or moves the paddle for the AI) and shows the score for that paddle
+// This class creates a paddle object and updates(handles player input or moves the paddle for the AI)
+// and shows the score for that paddle. It also checks to see if the paddle is in bounds for the game pong.
+// This class is an extension/child of the GameObject class
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=qvFu0WhNPWE&index=6&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Another video here
 // https://www.youtube.com/watch?v=Y3dbT-H_p20&index=8&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
 package pongGameEngine;
 
 import pongGraphicEngine.VertexArrayObject;

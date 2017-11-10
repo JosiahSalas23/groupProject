@@ -1,9 +1,12 @@
-// This class creates a ball object for pong.
+// This class creates a ball object for pong. It also checks and keeps the ball within the window bounds. 
+// It also translates the ball movement. This class is an extension/child of the GameObject class
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=qvFu0WhNPWE&index=6&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // another video here
 // https://www.youtube.com/watch?v=4CWXcWTsxog&index=10&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
 package pongGameEngine;
 
 import pongGraphicEngine.VertexArrayObject;

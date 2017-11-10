@@ -1,7 +1,9 @@
-// This class creates a pong game object
+// This class helps creates a pong game object. This class is the parent of all pong game objects. It can draw the game object
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
 // https://www.youtube.com/watch?v=rXh7HBoJa44&t=819s&index=4&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
+// Date written/modified: November 2017
+// Author: Josiah Salas
 
 package pongGameEngine;
 

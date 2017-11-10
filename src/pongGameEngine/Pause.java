@@ -1,3 +1,10 @@
+// This class is the pause screen for Pong. This class will be used when the game state is (pause). This class draws simple text
+// telling the user that the game is paused. It also tells the user the command to resume the game (unpause) or to quit out of the game
+// and go back into the pong main menu. This class has two boolean variables (unPause, toMenu) that the Driver class will use to switch
+// states of the game, (play or menu).
+// Date written/modified: November 2017
+// Author: Josiah Salas
+
 package pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;

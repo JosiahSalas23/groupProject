@@ -3,7 +3,7 @@ package pongInput;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 public class MouseInput extends GLFWCursorPosCallback {
-
+	
 	@Override
 	public void invoke(long winodw, double xpos, double ypos) {
 		// TODO Auto-generated method stub
@@ -11,5 +11,6 @@ public class MouseInput extends GLFWCursorPosCallback {
 		System.out.println("X: " + xpos + "\nY: " + ypos);
 		
 	} // end invoke
+	
 
 } // end class
