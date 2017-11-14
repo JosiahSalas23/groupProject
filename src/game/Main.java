@@ -3,13 +3,20 @@ package game;
 
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
+import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
+import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.*;
 
+
 import org.joml.Vector2f;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
+
+import com.sun.corba.se.impl.ior.ByteBuffer;
 
 import collision.AABB;
 import entity.Entity;
@@ -21,11 +28,49 @@ import world.Tile;
 import world.TileRenderer;
 import world.World;
 
+import pongGameEngine.LevelEasy;
+import pongGameEngine.LevelMedium;
+import pongGameEngine.LevelHard;
+import pongGameEngine.LevelMulti;
+import prototypeGUI.PrototypeMenuGUI;
+
+// keeps track of what state the program is in
+enum State {
+    MENU, PONGEASY, PONGMEDIUM, PONGHARD, PONGMULTI, MAZE
+};
+
 public class Main {
+	
+	
+	boolean pongEasySelection = false;
+	boolean pongMediumSelection = false;
+	boolean pongHardSelection = false;
+	boolean pongMultiSelection = false;
+	boolean maze = false;
+	boolean menu = true;
+	boolean quit = false;
+	boolean inPlay = false;
+	
+	TileRenderer tiles;
+	Camera camera;
+	Shader shader;
+	World world;
+	Window window;
+	
+	LevelEasy pongEasy;
+	LevelMedium pongMedium;
+	LevelHard pongHard;
+	LevelMulti pongMulti;
+	PrototypeMenuGUI menuGUI;
+	double frame_cap;
+	
+	
+	
+	private static State gameState = State.MENU;
+	
 	public Main() {
 		//Window.setCallbacks();
-		
-		
+	
 		
 		AABB box1 = new AABB(new Vector2f(0,0), new Vector2f(1,1));
 		AABB box2 = new AABB(new Vector2f(1,0), new Vector2f(1,1));
@@ -39,7 +84,8 @@ public class Main {
 			System.exit(1);
 		}
 		
-		Window window = new Window();
+		
+		window = new Window();
 		window.setSize(640, 480);
 		window.setFullscreen(false);
 		window.createWindow("Game");
@@ -50,11 +96,17 @@ public class Main {
 		//glEnable(GL_BLEND);
 		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
+		pongEasy = new LevelEasy();
+		pongMedium = new LevelMedium();
+		pongHard = new LevelHard();
+		pongMulti = new LevelMulti();
+		menuGUI = new PrototypeMenuGUI();
 		
-		Camera camera = new Camera(window.getWidth(), window.getHeight());
+		
+		camera = new Camera(window.getWidth(), window.getHeight());
 		glEnable(GL_TEXTURE_2D);
 		
-		TileRenderer tiles = new TileRenderer();
+		tiles = new TileRenderer();
 		
 		Entity.initAsset();
 		
@@ -78,10 +130,9 @@ public class Main {
 //		};
 //		
 //		Model model = new Model(vertices, texture, indices);
-		Shader shader = new Shader("shader");
+		shader = new Shader("shader");
 		
-		World world = new World("test_level");
-		
+		world = new World("test_level");
 		
 		world.setTile(Tile.test2, 6, 0);
 		world.setTile(Tile.test2, 7, 0);
@@ -152,7 +203,8 @@ public class Main {
 		world.setTile(Tile.test2, 9, 15);
 		world.setTile(Tile.test2, 11, 20);
 		world.setTile(Tile.test2, 10, 20);
-		double frame_cap = 1.0/60.0;
+		
+		frame_cap = 1.0/60.0;
 		
 		double frame_time = 0;
 		int frames = 0;
@@ -161,6 +213,7 @@ public class Main {
 		double unprocessed = 0;
 		
 		while(!window.shouldClose()) {
+			
 			boolean can_render = false;
 			
 			double time_2 = Timer.getTime();
@@ -174,15 +227,7 @@ public class Main {
 				unprocessed-=frame_cap;
 				can_render = true;
 				
-				if(window.getInput().isKeyReleased(GLFW_KEY_ESCAPE)) {
-				//	glfwSetWindowShouldClose(window.getWindow(), GL_TRUE);
-				}
-				
-				world.update((float)frame_cap, window, camera);
-				
-				world.correctCamera(camera, window);
-				
-				window.update();
+				update();
 				
 				if(frame_time >= 1.0) {
 					frame_time = 0;
@@ -200,7 +245,7 @@ public class Main {
 				//model.render();
 				//tex.bind(0);
 				
-				world.render(tiles, shader, camera, window);
+				render();
 				
 				window.swapBuffers();
 				frames++;
@@ -209,8 +254,199 @@ public class Main {
 		
 		Entity.deleteAsset();
 		
+		world = null;
+		camera = null;
+		window = null;
+		tiles = null;
+		box1 = null;
+		box2 = null;
+		
 		glfwTerminate();
-	}
+		
+	} // end of game constructor
+	
+	public void update() {
+		
+		if(quit) {
+			
+			glfwSetWindowShouldClose(window.getWindow(), true);
+		
+		} // end if
+		
+		// to exit out of games press q to go back to main menu
+		if (inPlay) {
+			
+			if(window.getInput().isKeyDown(GLFW.GLFW_KEY_Q)) {
+					
+				gameState = State.MENU;
+				
+			} // end if
+					
+		} // end inPlay
+			
+		switch(gameState) {
+		
+			// if the menu is on this checks for user input to check what game to run/ or to close
+			case MENU:
+				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_M)) {
+					
+					gameState = State.MAZE;
+					inPlay = true;
+								
+				} // end if
+				
+				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_P)) {
+					
+					gameState = State.PONGMULTI;
+					pongMulti = new LevelMulti();
+					inPlay = true;
+				
+				} // end if
+				
+				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_E)) {
+					
+					gameState = State.PONGEASY;
+					pongEasy = new LevelEasy();
+					inPlay = true;
+					
+				
+				} // end if
+				
+				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_T)) {
+					
+					gameState = State.PONGMEDIUM;
+					pongMedium = new LevelMedium();
+					inPlay = true;
+				
+				} // end if
+				
+				// checks to see if mouse is inside the area of the pongButton
+				if ((menuGUI.pongButton.position.x + menuGUI.pongButton.WIDTH) * (window.getWidth()/2) > window.getDX()
+						&& window.getDX() > menuGUI.pongButton.position.x * (window.getWidth()/2)
+						&& menuGUI.pongButton.position.y * (window.getHeight()/2) < window.getDY()
+						&& (menuGUI.pongButton.position.y + menuGUI.pongButton.HEIGHT) * (window.getHeight()/2) > window.getDY()) {
+					
+					// if the mouse clicks the pong button set the quitSelection to true and exit out of the loop
+					if(window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_1)) {
+						
+						gameState = State.PONGHARD;
+						pongHard = new LevelHard();
+						inPlay = true;
+						
+						
+					} // end if
+					
+					
+				} // end if
+				
+				// checks to see if mouse is inside the area of the mazeButton
+				if ((menuGUI.mazeButton.position.x + menuGUI.mazeButton.WIDTH) * (window.getWidth()/2) > window.getDX() 
+						&& window.getDX() > menuGUI.mazeButton.position.x * (window.getWidth()/2) 
+						&& menuGUI.mazeButton.position.y * (window.getHeight()/2) < (window.getDY())
+						&& (menuGUI.mazeButton.position.y + menuGUI.mazeButton.HEIGHT) * (window.getHeight()/2) > window.getDY()) {
+					
+					// if the mouse clicks the maze button set the mazeSelection to true and exit out of the loop
+					if(window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_1)) {
+						
+						gameState = State.MAZE;
+						inPlay = true;
+						
+					} // end if
+					
+					
+				} // end if
+				
+				// checks to see if mouse is inside the area of the quitButton
+				if ((menuGUI.quitButton.position.x + menuGUI.quitButton.WIDTH) * (window.getWidth()/2) > window.getDX() 
+						&& window.getDX() > menuGUI.quitButton.position.x * (window.getWidth()/2) 
+						&& menuGUI.quitButton.position.y * (window.getHeight()/2) < window.getDY()
+						&& (menuGUI.quitButton.position.y + menuGUI.quitButton.HEIGHT) * (window.getHeight()/2) > window.getDY()) {
+					
+					// if the mouse clicks the quit button set the quitSelection to true and exit out of the loop 
+					if(window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_1)) {
+						
+						quit = true;
+						
+					} // end if
+					
+					
+				} // end if
+				
+				window.update();
+				break;
+				
+			case PONGEASY:
+				pongEasy.update(window);
+				window.update();
+				break;
+				
+			case PONGMEDIUM:
+				pongMedium.update(window);
+				window.update();
+				break;
+				
+			case PONGHARD:
+				pongHard.update(window);
+				window.update();
+				break;
+				
+			case PONGMULTI:
+				pongMulti.update(window);
+				window.update();
+				break;
+				
+			// if maze is playing update it
+			case MAZE:
+				world.update((float)frame_cap, window, camera);
+				world.correctCamera(camera, window);
+				window.update();
+				break;
+		
+		
+		} // end switch
+		
+	} // end update
+	
+	public void render() {
+		
+		
+		switch(gameState) {
+		
+		case MENU:
+			menuGUI.draw();
+			break;
+			
+		case PONGEASY:
+			pongEasy.draw();
+			break;
+			
+		case PONGMEDIUM:
+			pongMedium.draw();
+			
+		case PONGHARD:
+			pongHard.draw();
+			break;
+			
+		case PONGMULTI:
+			pongMulti.draw();
+			break;
+			
+		case MAZE:
+			world.render(tiles, shader, camera, window);
+			break;
+	
+	
+		} // end switch
+		
+		
+	} // end render
+	
+	public static void main(String [] args) {
+		
+		new Main();
+		
+		
+	} // end main
 
 
-}
+} // end class

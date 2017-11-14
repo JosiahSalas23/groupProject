@@ -1,17 +1,22 @@
 package io;
 import static org.lwjgl.glfw.GLFW.*;
 
+import java.nio.DoubleBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window {
-	private long window;
+	private static long window;
 	
 	private int width, height;
 	private boolean fullscreen;
 	
 	private Input input;
+	
+	public static double x;
+	public static double y;
 	
 	public static void setCallbacks() {
 		glfwSetErrorCallback(GLFWErrorCallback.createPrint(System.err));
@@ -64,16 +69,35 @@ public class Window {
 		this.fullscreen = fullscreen;
 	}
 	
+	public static void cursorPosition() {
+		
+		DoubleBuffer xBuffer = BufferUtils.createDoubleBuffer(1);
+		DoubleBuffer yBuffer = BufferUtils.createDoubleBuffer(1);
+		glfwGetCursorPos(window, xBuffer, yBuffer);
+		x = xBuffer.get(0) - (640/2);
+		y = yBuffer.get(0) - (480/2);
+		y = y * -1;
+		
+		
+		
+	}
+	
 	public void update() {
 		//update the window
-		//update before pollEvents 
+		//update before pollEvents
+		cursorPosition();
 		input.update();
 		glfwPollEvents();
+		
 	}
+	
+	
 	
 	public int getWidth() { return width; }
 	public int getHeight() { return height; }
 	public boolean isFullscreen() { return fullscreen; }
 	public long getWindow() { return window; }
 	public Input getInput() { return input; }
+	public double getDX() { return x; }
+	public double getDY() { return y; }
 }

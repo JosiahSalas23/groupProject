@@ -11,7 +11,6 @@
 package pongGameEngine;
 
 import pongGraphicEngine.VertexArrayObject;
-import org.lwjgl.glfw.GLFW;
 import io.Window;
 import pongUtils.Vector3f;
 
@@ -19,13 +18,13 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import org.lwjgl.glfw.GLFW;
 
-public class Paddle extends GameObject {
+public class PaddleLong extends GameObject {
 
 	private VertexArrayObject vao;
 	
 	public Vector3f position;
 	public float WIDTH = 0.05f;
-	public float HEIGHT = 0.25f;
+	public float HEIGHT = 0.50f;
 	public int score = 0;
 	
 	// paddles vertices and bytes
@@ -46,7 +45,7 @@ public class Paddle extends GameObject {
 	};
 	
 	// our Paddle Constructor
-	public Paddle() {
+	public PaddleLong() {
 		
 		this.count = indices.length;
 		this.position = new Vector3f();
@@ -73,7 +72,7 @@ public class Paddle extends GameObject {
 			if (window.getInput().isKeyDown(GLFW.GLFW_KEY_UP))
 				position.y += 0.040f;
 			
-			if (window.getInput().isKeyDown(GLFW.GLFW_KEY_DOWN) )
+			if (window.getInput().isKeyDown(GLFW.GLFW_KEY_DOWN))
 				position.y -= 0.040f;
 					
 		} // end if
@@ -136,18 +135,5 @@ public class Paddle extends GameObject {
 		
 	} // end if
 	
-	// updates the score for the player that scored
-	public void score() {
-		
-		score++;
-		
-	} // end score
-	
-	// shows us the score of that player
-	public int getScore() {
-		
-		return score;
-		
-	} // end score
 	
 } // end class

@@ -1,6 +1,6 @@
 // This class purpose is to initialize all of the objects for pong as well as update and draw them, 
-// when the state of the game is (play) and the user selects the multiplayer option.
-// It handles multiplayer logic.
+// when the state of the game is (play) and the user selects the single player option/medium.
+// It handles single player logic.
 // This class will help keep the code clean in our driver class because we don't have to call each individual function.
 // This class was adapted from a youtube video from Elliot Forbes
 // Video Here
@@ -21,7 +21,7 @@ import pongGraphicEngine.ShaderManager;
 import io.Window;
 import pongText.Text;
 
-public class LevelMulti {
+public class LevelMedium {
 
 	public Paddle player1;
 	public PaddleLong player1Long;
@@ -50,7 +50,7 @@ public class LevelMulti {
 	
 	
 	// Create both players paddles and a ball
-	public LevelMulti() {
+	public LevelMedium() {
 		
 		shaderManager = new ShaderManager();
 		shaderManager.loadAll();
@@ -296,13 +296,36 @@ public class LevelMulti {
 		
 		player1.update("player1", window);
 		player1Long.update("player1", window);
-		player2.update("player2", window);
-		player2Long.update("player2", window);
 		
 		ball.update();
 		
 		if (powerUpBallDroped)
 			checkPowerBallCollision();
+		
+		// AI logic
+		if (ball.movement.y > 0 && ball.position.y > player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.55f) {
+			
+			player2.moveAIUpMedium();
+			
+		} // end if
+		
+		if (ball.movement.y < 0 && ball.position.y < player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.55f) {
+			
+			player2.moveAIDownMedium();
+			
+		} // end if
+		
+		if (ball.movement.y > 0 && ball.position.y > player2Long.position.y + 0.25f && ball.movement.x > 0 && ball.position.x > -0.55f) {
+			
+			player2Long.moveAIUpMedium();
+			
+		} // end if
+		
+		if (ball.movement.y < 0 && ball.position.y < player2Long.position.y + 0.25f && ball.movement.x > 0 && ball.position.x > -0.55f) {
+			
+			player2Long.moveAIDownMedium();
+			
+		} // end if	
 		
 	} // end update
 	

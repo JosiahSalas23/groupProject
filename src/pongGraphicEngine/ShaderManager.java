@@ -14,6 +14,7 @@ public class ShaderManager {
 	public static Shader ballShader3;
 	public static Shader ballShader4;
 	public static Shader ballShader5;
+	public static Shader powerUpBallShader;
 	
 	public static void loadAll() {
 		
@@ -23,6 +24,7 @@ public class ShaderManager {
 		ballShader3 = new Shader("src/shaders/ballVertex3.shader", "src/shaders/ballFragment.shader");
 		ballShader4 = new Shader("src/shaders/ballVertex4.shader", "src/shaders/ballFragment.shader");
 		ballShader5 = new Shader("src/shaders/ballVertex5.shader", "src/shaders/ballFragment.shader");
+		powerUpBallShader = new Shader("src/shaders/powerUpBallVertex.shader", "src/shaders/ballFragment.shader");
 		
 	} // end loadAll
 	
