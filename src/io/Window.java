@@ -23,7 +23,7 @@ public class Window {
 	}
 	
 	public Window() {
-		setSize(640, 480);
+		setSize(640, 640);
 		setFullscreen(false);
 	}
 
@@ -75,7 +75,7 @@ public class Window {
 		DoubleBuffer yBuffer = BufferUtils.createDoubleBuffer(1);
 		glfwGetCursorPos(window, xBuffer, yBuffer);
 		x = xBuffer.get(0) - (640/2);
-		y = yBuffer.get(0) - (480/2);
+		y = yBuffer.get(0) - (640/2);
 		y = y * -1;
 		
 		

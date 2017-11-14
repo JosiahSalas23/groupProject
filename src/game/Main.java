@@ -41,13 +41,7 @@ enum State {
 
 public class Main {
 	
-	
-	boolean pongEasySelection = false;
-	boolean pongMediumSelection = false;
-	boolean pongHardSelection = false;
-	boolean pongMultiSelection = false;
-	boolean maze = false;
-	boolean menu = true;
+
 	boolean quit = false;
 	boolean inPlay = false;
 	
@@ -86,7 +80,7 @@ public class Main {
 		
 		
 		window = new Window();
-		window.setSize(640, 480);
+		window.setSize(640, 640);
 		window.setFullscreen(false);
 		window.createWindow("Game");
 		
