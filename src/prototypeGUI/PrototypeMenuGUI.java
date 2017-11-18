@@ -3,14 +3,14 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package prototypeGUI;
+package src.prototypeGUI;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_M;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
 
-import pongGraphicEngine.ShaderManager;
-import pongText.Text;
+import src.pongGraphicEngine.ShaderManager;
+import src.pongText.Text;
 
 public class PrototypeMenuGUI {
 

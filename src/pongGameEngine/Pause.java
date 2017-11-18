@@ -5,12 +5,12 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongGameEngine;
+package src.pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
 
-import pongText.Text;
+import src.pongText.Text;
 
 public class Pause {
 

@@ -1,4 +1,4 @@
-package io;
+package src.io;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Input {
@@ -28,8 +28,6 @@ public class Input {
 	public boolean isMouseButtonDown(int button) {
 		return glfwGetMouseButton(window, button) == 1;
 	}
-	
-	
 	
 	public void update() {
 		for(int i = 32; i < GLFW_KEY_LAST; i++)

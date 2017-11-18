@@ -12,14 +12,14 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongGameEngine;
+package src.pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
 import static org.lwjgl.opengl.GL11.*;
 
-import pongGraphicEngine.ShaderManager;
-import io.Window;
-import pongText.Text;
+import src.pongGraphicEngine.ShaderManager;
+import src.io.Window;
+import src.pongText.Text;
 
 public class LevelMedium {
 

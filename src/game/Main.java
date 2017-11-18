@@ -1,5 +1,5 @@
 
-package game;
+package src.game;
 
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
@@ -16,23 +16,23 @@ import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 
-import com.sun.corba.se.impl.ior.ByteBuffer;
+//import com.sun.corba.se.impl.ior.ByteBuffer;
 
-import collision.AABB;
-import entity.Entity;
-import io.Timer;
-import io.Window;
-import render.Camera;
-import render.Shader;
-import world.Tile;
-import world.TileRenderer;
-import world.World;
+import src.collision.AABB;
+import src.entity.Entity;
+import src.io.Timer;
+import src.io.Window;
+import src.render.Camera;
+import src.render.Shader;
+import src.world.Tile;
+import src.world.TileRenderer;
+import src.world.World;
 
-import pongGameEngine.LevelEasy;
-import pongGameEngine.LevelMedium;
-import pongGameEngine.LevelHard;
-import pongGameEngine.LevelMulti;
-import prototypeGUI.PrototypeMenuGUI;
+import src.pongGameEngine.LevelEasy;
+import src.pongGameEngine.LevelMedium;
+import src.pongGameEngine.LevelHard;
+import src.pongGameEngine.LevelMulti;
+import src.prototypeGUI.PrototypeMenuGUI;
 
 // keeps track of what state the program is in
 enum State {

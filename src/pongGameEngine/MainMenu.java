@@ -10,8 +10,8 @@ package pongGameEngine;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_N;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_M;
 
-import pongInput.KeyboardInput;
-import pongText.Text;
+import src.pongInput.KeyboardInput;
+import src.pongText.Text;
 
 public class MainMenu {
 

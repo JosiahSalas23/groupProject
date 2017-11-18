@@ -1,4 +1,4 @@
-package world;
+package src.world;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,14 +12,14 @@ import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import collision.AABB;
-import entity.Entity;
-import entity.Player;
-import io.Window;
-import render.Animation;
-import render.Camera;
-import render.Shader;
-import entity.Transform;
+import src.collision.AABB;
+import src.entity.Entity;
+import src.entity.Player;
+import src.io.Window;
+import src.render.Animation;
+import src.render.Camera;
+import src.render.Shader;
+import src.entity.Transform;
 
 public class World {
 	private final int view = 24;

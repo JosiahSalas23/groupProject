@@ -1,14 +1,14 @@
-package world;
+package src.world;
 
 import java.util.HashMap;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import render.Texture;
-import render.Model;
-import render.Shader;
-import render.Camera;
+import src.render.Texture;
+import src.render.Model;
+import src.render.Shader;
+import src.render.Camera;
 
 public class TileRenderer {
 	private HashMap <String, Texture> tile_textures;

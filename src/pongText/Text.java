@@ -6,7 +6,7 @@
 // Date written/modified: November 2017
 
 
-package pongText;
+package src.pongText;
 
 import org.lwjgl.opengl.GL11;
 

@@ -6,10 +6,10 @@
 // https://www.youtube.com/watch?v=4CWXcWTsxog&index=10&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Date written/modified: November 2017
 // Author: Josiah Salas
-package prototypeGUI;
+package src.prototypeGUI;
 
-import pongGraphicEngine.VertexArrayObject;
-import pongUtils.Vector3f;
+import src.pongGraphicEngine.VertexArrayObject;
+import src.pongUtils.Vector3f;
 
 public class MenuButton extends MenuObject {
 	

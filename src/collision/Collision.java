@@ -1,4 +1,4 @@
-package collision;
+package src.collision;
 
 import org.joml.Vector2f;
 

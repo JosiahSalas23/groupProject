@@ -5,7 +5,7 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongGraphicEngine;
+package src.pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;

@@ -8,12 +8,12 @@
 // https://www.youtube.com/watch?v=Y3dbT-H_p20&index=8&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Date written/modified: November 2017
 // Author: Josiah Salas
-package pongGameEngine;
+package src.pongGameEngine;
 
-import pongGraphicEngine.VertexArrayObject;
+import src.pongGraphicEngine.VertexArrayObject;
 import org.lwjgl.glfw.GLFW;
-import io.Window;
-import pongUtils.Vector3f;
+import src.io.Window;
+import src.pongUtils.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 

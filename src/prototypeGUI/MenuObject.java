@@ -5,7 +5,7 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package prototypeGUI;
+package src.prototypeGUI;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;

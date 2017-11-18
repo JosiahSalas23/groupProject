@@ -1,4 +1,4 @@
-package render;
+package src.render;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 

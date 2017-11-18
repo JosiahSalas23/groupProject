@@ -7,7 +7,7 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongUtils;
+package src.pongUtils;
 
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;

@@ -12,15 +12,15 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongGameEngine;
+package src.pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
 import static org.lwjgl.opengl.GL11.*;
 
-import pongGraphicEngine.ShaderManager;
-import pongInput.KeyboardInput;
-import pongInput.MouseInput;
-import pongText.Text;
+import src.pongGraphicEngine.ShaderManager;
+import src.pongInput.KeyboardInput;
+import src.pongInput.MouseInput;
+import src.pongText.Text;
 
 public class Level {
 

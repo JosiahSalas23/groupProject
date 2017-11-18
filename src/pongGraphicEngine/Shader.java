@@ -4,7 +4,7 @@
 // https://www.youtube.com/watch?v=_rjSel-6K38&index=7&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Date written/modified: October 2017
 // Author: Josiah Salas
-package pongGraphicEngine;
+package src.pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;

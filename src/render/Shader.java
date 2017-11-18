@@ -1,4 +1,4 @@
-package render;
+package src.render;
 import static org.lwjgl.opengl.GL20.*;
 
 import static org.lwjgl.opengl.GL20.glCreateProgram;

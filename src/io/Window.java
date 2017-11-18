@@ -1,4 +1,4 @@
-package io;
+package src.io;
 import static org.lwjgl.glfw.GLFW.*;
 
 import java.nio.DoubleBuffer;
