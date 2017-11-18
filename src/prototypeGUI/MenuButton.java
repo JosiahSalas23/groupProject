@@ -8,8 +8,10 @@
 // Author: Josiah Salas
 package src.prototypeGUI;
 
+import org.joml.Vector3f;
+
 import src.pongGraphicEngine.VertexArrayObject;
-import src.pongUtils.Vector3f;
+//import src.pongUtils.Vector3f;
 
 public class MenuButton extends MenuObject {
 	

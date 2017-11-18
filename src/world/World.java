@@ -33,13 +33,18 @@ public class World {
 	private Matrix4f world;
 	
 	public World(String world) {
+		this(world , 16);
+	}
+	
+	public World(String world, int s) {
 		try {
+			System.out.println("world file:" + world);
 			BufferedImage tile_sheet = ImageIO.read(new File("./levels/" + world + "_tiles.png"));
 			//BufferedImage entity_sheet = ImageIO.read(new File("./levels/" + world + "_entity.png"));
 			
 			width = tile_sheet.getWidth();
 			height = tile_sheet.getHeight();
-			scale = 16;
+			scale = s;
 			
 			this.world = new Matrix4f().setTranslation(new Vector3f(0));
 			this.world.scale(scale);
@@ -71,9 +76,11 @@ public class World {
 			
 			
 		} catch (IOException e) {
+			System.out.println("Cannot open file: \"" + world + "\"");
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public World() {
 		width = 64;

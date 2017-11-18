@@ -20,8 +20,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 import src.io.Window;
 
-import pongGraphicEngine.ShaderManager;
-import pongText.Text;
+import src.pongGraphicEngine.ShaderManager;
+import src.pongText.Text;
 
 public class LevelHard {
 

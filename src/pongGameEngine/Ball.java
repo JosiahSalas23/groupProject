@@ -9,8 +9,10 @@
 // Author: Josiah Salas
 package src.pongGameEngine;
 
+import org.joml.Vector3f;
+
 import src.pongGraphicEngine.VertexArrayObject;
-import src.pongUtils.Vector3f;
+//import src.pongUtils.Vector3f;
 
 public class Ball extends GameObject {
 	
@@ -97,7 +99,7 @@ public class Ball extends GameObject {
 		
 		if (!checkBounds()) {
 			
-			this.position.translate(movement);
+			this.position.add(movement);
 			
 		} // end if
 		

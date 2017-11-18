@@ -27,8 +27,8 @@ public class Texture {
 			
 			ByteBuffer pixels = BufferUtils.createByteBuffer(width * height * 4);
 			
-			for(int i = 0; i < width; i++) {
-				for(int j = 0; j < height; j++) {
+			for(int i = 0; i < height; i++) {
+				for(int j = 0; j < width; j++) {
 					int pixel = pixels_raw[i*width + j];
 					pixels.put((byte) ((pixel >> 16) & 0xFF)); //RED
 					pixels.put((byte) ((pixel >> 8) & 0xFF));  //GREEN
@@ -48,6 +48,7 @@ public class Texture {
 			
 			glTexImage2D(GL_TEXTURE_2D,  0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 		} catch(IOException e) {
+			System.out.println("Cannot Open file: " + filename);
 			e.printStackTrace();
 		}
 		

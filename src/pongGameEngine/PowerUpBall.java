@@ -9,8 +9,10 @@
 // Author: Josiah Salas
 package src.pongGameEngine;
 
+import org.joml.Vector3f;
+
 import src.pongGraphicEngine.VertexArrayObject;
-import src.pongUtils.Vector3f;
+//import src.pongUtils.Vector3f;
 
 public class PowerUpBall extends GameObject {
 	

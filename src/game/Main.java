@@ -46,10 +46,10 @@ public class Main {
 	boolean inPlay = false;
 	
 	TileRenderer tiles;
-	Camera camera;
-	Shader shader;
+	public static Camera camera;
+	public static Shader shader;
 	World world;
-	Window window;
+	public static Window window;
 	
 	LevelEasy pongEasy;
 	LevelMedium pongMedium;

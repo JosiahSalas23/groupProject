@@ -13,7 +13,9 @@ package src.pongGameEngine;
 import src.pongGraphicEngine.VertexArrayObject;
 import org.lwjgl.glfw.GLFW;
 import src.io.Window;
-import src.pongUtils.Vector3f;
+//import src.pongUtils.Vector3f;
+import org.joml.Vector3f;
+
 
 import static org.lwjgl.glfw.GLFW.*;
 

@@ -5,12 +5,15 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package pongGameEngine;
+package src.pongGameEngine;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_N;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_M;
 
-import src.pongInput.KeyboardInput;
+
+//import src.pongInput.KeyboardInput;
+import src.game.Main;
+import src.io.Input;
 import src.pongText.Text;
 
 public class MainMenu {
@@ -19,7 +22,7 @@ public class MainMenu {
 	public boolean multiPlayer = false;
 	
 	public void update() {
-		
+		Input KeyboardInput = new Input(Main.window.getWindow());
 		
 		if (KeyboardInput.isKeyDown(GLFW_KEY_N)) {
 			

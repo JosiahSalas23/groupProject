@@ -18,9 +18,9 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
 import static org.lwjgl.opengl.GL11.*;
 
 import src.pongGraphicEngine.ShaderManager;
-import src.pongInput.KeyboardInput;
-import src.pongInput.MouseInput;
 import src.pongText.Text;
+import src.game.Main;
+import src.io.Input;
 
 public class Level {
 
@@ -137,7 +137,7 @@ public class Level {
 	
 	// update both players paddles and the ball
 	public void update() {
-				
+		Input KeyboardInput = new Input(Main.window.getWindow());	
 		if (KeyboardInput.isKeyDown(GLFW_KEY_P)) {
 			
 			   System.out.println("Game pause");
@@ -153,19 +153,19 @@ public class Level {
 		
 		checkGoal();
 		
-		player1.update("player1");
+		player1.update("player1",Main.window);
 		ball.update();
 		
 		// AI logic
 		if (ball.movement.y > 0 && ball.position.y > player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
 			
-			player2.moveAIUp();
+			player2.moveAIUpEasy();
 			
 		} // end if
 		
 		if (ball.movement.y < 0 && ball.position.y < player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
 			
-			player2.moveAIDown();
+			player2.moveAIDownEasy();
 			
 		} // end if	
 		

@@ -5,8 +5,9 @@ public class Tile  {
 	//not = number_of_tiles
 	public static byte not = 0;
 	
-	public static final Tile test_tile = new Tile( "test");
-	public static final Tile test2 = new Tile( "checker").setSolid();
+	public static final Tile test_tile = new Tile( "test" );
+	public static final Tile test2 = new Tile("checker").setSolid();
+	public static final Tile MainBG = new Tile("frame");
 	
 	private byte id;
 	private boolean solid;
