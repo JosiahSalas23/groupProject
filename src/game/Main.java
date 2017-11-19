@@ -126,8 +126,8 @@ public class Main {
 //		Model model = new Model(vertices, texture, indices);
 		shader = new Shader("shader");
 		
-		world = new World("test_level");
-		
+		world = new World("test_level",camera);
+		/*
 		world.setTile(Tile.test2, 6, 0);
 		world.setTile(Tile.test2, 7, 0);
 		world.setTile(Tile.test2, 8, 0);
@@ -197,7 +197,7 @@ public class Main {
 		world.setTile(Tile.test2, 9, 15);
 		world.setTile(Tile.test2, 11, 20);
 		world.setTile(Tile.test2, 10, 20);
-		
+		*/
 		frame_cap = 1.0/60.0;
 		
 		double frame_time = 0;
