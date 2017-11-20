@@ -14,17 +14,16 @@
 
 package src.pongGameEngine;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
-
-import static org.lwjgl.opengl.GL11.*;
+//import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
+//import static org.lwjgl.opengl.GL11.*;
 
 import src.io.Window;
 
 import src.pongGraphicEngine.ShaderManager;
-import src.pongText.Text;
+//import src.pongText.Text;
 
-public class LevelHard {
-
+public class LevelHard extends LevelDif{
+	/*
 	public Paddle player1;
 	public PaddleLong player1Long;
 	public Paddle player2;
@@ -49,30 +48,31 @@ public class LevelHard {
 	// long paddles
 	public boolean player1LongPaddle = false;
 	public boolean player2LongPaddle = false;
-	
+	*/
 	
 	// Create both players paddles and a ball
 	public LevelHard() {
+		super();
 		
-		shaderManager = new ShaderManager();
-		shaderManager.loadAll();
+		super.shaderManager = new ShaderManager();
+		ShaderManager.loadAll();
 		
-		player1 = new Paddle();
-		player2 = new Paddle();
-		player1Long = new PaddleLong();
-		player2Long = new PaddleLong();
+//		player1 = new Paddle();
+//		player2 = new Paddle();
+//		player1Long = new PaddleLong();
+//		player2Long = new PaddleLong();
 		
-		ball = new Ball();
-		powerBall = new PowerUpBall();
-		
-		player1.position.x = -0.8f;
-		player1Long.position.x = -0.8f;
-		player2.position.x = 0.8f;
-		player2Long.position.x = 0.8f;
-		
+		super.ball = new Ball();
+		super.powerBall = new PowerUpBall();
+//		
+//		player1.position.x = -0.8f;
+//		player1Long.position.x = -0.8f;
+//		player2.position.x = 0.8f;
+//		player2Long.position.x = 0.8f;
+//		
 		
 	} // end Level Constructor
-	
+	/*
 	// Checks to see if the paddle made contact with the ball
 	public void checkCollision(Paddle paddle) {
 		
@@ -238,7 +238,7 @@ public class LevelHard {
 		ball = new Ball();
 		
 	} // end resetPlayingField
-	
+	*/
 	// update both players paddles and the ball
 	public void update(Window window) {
 				
@@ -250,45 +250,45 @@ public class LevelHard {
 			} // end if*/
 		
 		// if a powerball hasnt already spawned and there has been five ball hits since the last power up spawn a power up
-		if (nonPowerHitCount == 5 && !powerUpBallDroped) {
+		if (super.nonPowerHitCount == 5 && !super.powerUpBallDroped) {
 			
 			float powerBallPosition;
 			powerBallPosition = (float)(Math.random() * 0.8 -0.2);
-			powerBall.position.y = powerBallPosition;
-			powerUpBallDroped = true;
+			super.powerBall.position.y = powerBallPosition;
+			super.powerUpBallDroped = true;
 			
 		} // end if
 			
 		
 		// if player 1 has a long paddle check its collision, player 2 will have a normal paddle
-		if (player1LongPaddle) {
+		if (super.player1LongPaddle) {
 			
-			if (ball.movement.x < 0)
+			if (super.ball.movement.x < 0)
 				checkCollisionLong(player1Long);
 			
-			if (ball.movement.x > 0)
+			if (super.ball.movement.x > 0)
 				checkCollision(player2);
 			
 		} // end if
 		
 		// if player 2 has a long paddle check its collision, player 1 will have a normal paddle
-		if (player2LongPaddle) {
+		if (super.player2LongPaddle) {
 			
-			if (ball.movement.x < 0)
+			if (super.ball.movement.x < 0)
 				checkCollision(player1);
 			
-			if (ball.movement.x > 0)
+			if (super.ball.movement.x > 0)
 				checkCollisionLong(player2Long);
 			
 		} // end if
 		
 		// if player 1 and player 2 dont have a modified paddle powerup check normal paddle collision
-		if(!player1LongPaddle && !player2LongPaddle) {
+		if(!super.player1LongPaddle && !super.player2LongPaddle) {
 			
-			if (ball.movement.x < 0)
+			if (super.ball.movement.x < 0)
 				checkCollision(player1);
 			
-			if (ball.movement.x > 0)
+			if (super.ball.movement.x > 0)
 				checkCollision(player2);
 			
 		} // end else
@@ -296,41 +296,41 @@ public class LevelHard {
 		
 		checkGoal();
 		
-		player1.update("player1",window);
-		player1Long.update("player1", window);
+		super.player1.update("player1",window);
+		super.player1Long.update("player1", window);
 		
-		ball.update();
+		super.ball.update();
 		
 		if (powerUpBallDroped)
 			checkPowerBallCollision();
 		
 		// AI logic
-		if (ball.movement.y > 0 && ball.position.y > player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
+		if (super.ball.movement.y > 0 && super.ball.position.y > super.player2.position.y + 0.125f && super.ball.movement.x > 0 && super.ball.position.x > -0.6f) {
 			
-			player2.moveAIUpHard();
-			
-		} // end if
-		
-		if (ball.movement.y < 0 && ball.position.y < player2.position.y + 0.125f && ball.movement.x > 0 && ball.position.x > -0.6f) {
-			
-			player2.moveAIDownHard();
+			super.player2.moveAIUpHard();
 			
 		} // end if
 		
-		if (ball.movement.y > 0 && ball.position.y > player2Long.position.y + 0.25f && ball.movement.x > 0 && ball.position.x > -0.6f) {
+		if (super.ball.movement.y < 0 && super.ball.position.y < super.player2.position.y + 0.125f && super.ball.movement.x > 0 && super.ball.position.x > -0.6f) {
+			
+			super.player2.moveAIDownHard();
+			
+		} // end if
+		
+		if (super.ball.movement.y > 0 && super.ball.position.y > super.player2Long.position.y + 0.25f && super.ball.movement.x > 0 && super.ball.position.x > -0.6f) {
 			
 			player2Long.moveAIUpHard();
 			
 		} // end if
 		
-		if (ball.movement.y < 0 && ball.position.y < player2Long.position.y + 0.25f && ball.movement.x > 0 && ball.position.x > -0.6f) {
+		if (super.ball.movement.y < 0 && super.ball.position.y < super.player2Long.position.y + 0.25f && super.ball.movement.x > 0 && super.ball.position.x > -0.6f) {
 			
-			player2Long.moveAIDownHard();
+			super.player2Long.moveAIDownHard();
 			
 		} // end if	
 		
 	} // end update
-	
+	/*
 	// draws objects
 	public void draw() {
 		
@@ -441,5 +441,6 @@ public class LevelHard {
 		} // end if
 		
 	} // end draw
+	*/
 	
 } // end class

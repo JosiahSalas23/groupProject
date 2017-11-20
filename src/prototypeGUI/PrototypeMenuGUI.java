@@ -20,7 +20,7 @@ public class PrototypeMenuGUI {
 	public MenuButton pongButton;
 	public MenuButton mazeButton;
 	public MenuButton quitButton;
-	private World BG = new World("Test",Main.camera, 128);
+	private World BG = new World("Test",Main.camera, 160);
 	private TileRenderer tiles = new TileRenderer(20,20);
 	
 	ShaderManager shaderManager;

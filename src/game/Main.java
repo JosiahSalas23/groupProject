@@ -127,77 +127,7 @@ public class Main {
 		shader = new Shader("shader");
 		
 		world = new World("test_level",camera);
-		/*
-		world.setTile(Tile.test2, 6, 0);
-		world.setTile(Tile.test2, 7, 0);
-		world.setTile(Tile.test2, 8, 0);
-		world.setTile(Tile.test2, 9, 0);
-		
-		
-		world.setTile(Tile.test2, 6, 5);
-		world.setTile(Tile.test2, 5, 5);
-		world.setTile(Tile.test2, 5, 2);
-		world.setTile(Tile.test2, 5, 3);
-		world.setTile(Tile.test2, 7, 4);
-		
-		world.setTile(Tile.test2, 4, 2);
-		world.setTile(Tile.test2, 4, 3);
-		world.setTile(Tile.test2, 4, 4);
-		world.setTile(Tile.test2, 4, 5);
-		world.setTile(Tile.test2, 10, 0);
-		
-		world.setTile(Tile.test2, 11, 0);
-		world.setTile(Tile.test2, 12, 0);
-		world.setTile(Tile.test2, 12, 1);
-		world.setTile(Tile.test2, 13, 1);
-		world.setTile(Tile.test2, 13, 2);
-		
-		world.setTile(Tile.test2, 14, 2);
-		world.setTile(Tile.test2, 15, 2);
-		world.setTile(Tile.test2, 16, 2);
-		world.setTile(Tile.test2, 17, 2);
-		world.setTile(Tile.test2, 18, 2);
-		
-		world.setTile(Tile.test2, 18, 3);
-		world.setTile(Tile.test2, 18, 4);
-		world.setTile(Tile.test2, 18, 5);
-		world.setTile(Tile.test2, 18, 6);
-		world.setTile(Tile.test2, 18, 7);
-		world.setTile(Tile.test2, 18, 8);
-		world.setTile(Tile.test2, 18, 9);
-		world.setTile(Tile.test2, 18, 10);
-		world.setTile(Tile.test2, 18, 11);
-		world.setTile(Tile.test2, 18, 12);
-		
-		world.setTile(Tile.test2, 18, 13);
-		world.setTile(Tile.test2, 18, 14);
-		world.setTile(Tile.test2, 18, 15);
-		world.setTile(Tile.test2, 18, 16);
-		world.setTile(Tile.test2, 18, 17);
-		world.setTile(Tile.test2, 18, 18);
-		world.setTile(Tile.test2, 18, 19);
-		world.setTile(Tile.test2, 18, 20);
-		world.setTile(Tile.test2, 18, 21);
-		world.setTile(Tile.test2, 18, 22);
-		
-		world.setTile(Tile.test2, 17, 20);
-		world.setTile(Tile.test2, 16, 20);
-		world.setTile(Tile.test2, 15, 20);
-		world.setTile(Tile.test2, 14, 20);
-		world.setTile(Tile.test2, 13, 20);
-		world.setTile(Tile.test2, 12, 20);
-		world.setTile(Tile.test2, 11, 20);
-		world.setTile(Tile.test2, 10, 20);
-		
-		world.setTile(Tile.test2,  9, 20);
-		world.setTile(Tile.test2, 9, 19);
-		world.setTile(Tile.test2, 9, 18);
-		world.setTile(Tile.test2, 9, 17);
-		world.setTile(Tile.test2, 9, 16);
-		world.setTile(Tile.test2, 9, 15);
-		world.setTile(Tile.test2, 11, 20);
-		world.setTile(Tile.test2, 10, 20);
-		*/
+
 		frame_cap = 1.0/60.0;
 		
 		double frame_time = 0;
@@ -232,12 +162,7 @@ public class Main {
 			
 			if(can_render) {
 				glClear(GL_COLOR_BUFFER_BIT);
-				
-//				shader.bind();
-//				shader.setUniform("sampler", 0);
-//				shader.setUniform("projection", camera.getProjection().mul(target));
-				//model.render();
-				//tex.bind(0);
+
 				
 				render();
 				

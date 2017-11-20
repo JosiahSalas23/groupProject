@@ -15,28 +15,29 @@ public class TileRenderer {
 	private HashMap <String, Animation> tile_Animated;
 	private HashMap <String, Texture> tile_textures;
 	private Model model;
-	private boolean animated = false;
+	private boolean animated;
+	private float[] vertices = new float[] {
+			-1f, 1f, 0, //TOP LEFT     0
+			1f, 1f, 0,  //TOP RIGHT    1
+			1f, -1f, 0, //BOTTOM RIGHT 2
+			-1f, -1f, 0,//BOTTOM LEFT  3
+	};
+	
+	private float[] texture = new float[] {
+			0,0,
+			1,0,
+			1,1,
+			0,1,
+	};
+	
+	private int[] indices = new int[] {
+			0,1,2,
+			2,3,0
+	};
 	
 	public TileRenderer() {
+		animated = false;
 		tile_textures = new HashMap<String, Texture>();
-		float[] vertices = new float[] {
-				-1f, 1f, 0, //TOP LEFT     0
-				1f, 1f, 0,  //TOP RIGHT    1
-				1f, -1f, 0, //BOTTOM RIGHT 2
-				-1f, -1f, 0,//BOTTOM LEFT  3
-		};
-		
-		float[] texture = new float[] {
-				0,0,
-				1,0,
-				1,1,
-				0,1,
-		};
-		
-		int[] indices = new int[] {
-				0,1,2,
-				2,3,0
-		};
 		
 		 model = new Model(vertices, texture, indices);
 		 
@@ -56,25 +57,7 @@ public class TileRenderer {
 	public TileRenderer(int frames, int fps) {
 		animated = true;
 		tile_Animated = new HashMap<String, Animation>();
-		float[] vertices = new float[] {
-				-1f, 1f, 0, //TOP LEFT     0
-				1f, 1f, 0,  //TOP RIGHT    1
-				1f, -1f, 0, //BOTTOM RIGHT 2
-				-1f, -1f, 0,//BOTTOM LEFT  3
-		};
-		
-		float[] texture = new float[] {
-				0,0,
-				1,0,
-				1,1,
-				0,1,
-		};
-		
-		int[] indices = new int[] {
-				0,1,2,
-				2,3,0
-		};
-		
+	
 		 model = new Model(vertices, texture, indices);
 		 
 		 for(int i = 0; i < Tile.tiles.length; i++ ) {
@@ -83,7 +66,6 @@ public class TileRenderer {
 			    if(!tile_Animated.containsKey (Tile.tiles[i].getTexture())) {
 			        String tex = Tile.tiles[i].getTexture();
 			        tile_Animated.put(tex, new Animation(frames,fps, tex )  );
-			        //tile_textures.put(tex, new Texture (tex + ".jpg"));
 			    }
 			 }   
 				 
@@ -92,17 +74,18 @@ public class TileRenderer {
 	
 	public void renderTile(Tile  tile, int x, int y, Shader shader, Matrix4f world, Camera cam) {
 		shader.bind();
-		if(animated)
+		if(animated == true) {
 			if(tile_Animated.containsKey(tile.getTexture())) {
 				//tests to make sure texture is there then bind the texture
 				tile_Animated.get(tile.getTexture()).bind(0);
-				}
-		else
+			}
+		}
+		else {
 			if(tile_textures.containsKey(tile.getTexture())) {
 				//tests to make sure texture is there then bind the texture
 				tile_textures.get(tile.getTexture()).bind(0);
 			}
-		
+		}
 		//position multiplied by 2 for scaling.
 		Matrix4f tile_pos = new Matrix4f().translate(new Vector3f(x*2,  y*2,  0));
 		//target is tile position * world *camera projection.
