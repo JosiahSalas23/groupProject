@@ -5,8 +5,9 @@
 
 package src.prototypeGUI;
 
-import src.game.Main;
-
+import static src.game.Main.window; 
+import static src.game.Main.camera;
+import static src.game.Main.shader;
 //import static org.lwjgl.glfw.GLFW.*;
 
 import src.pongGraphicEngine.ShaderManager;
@@ -20,8 +21,8 @@ public class PrototypeMenuGUI {
 	public MenuButton pongButton;
 	public MenuButton mazeButton;
 	public MenuButton quitButton;
-	private World BG = new World("Test",Main.camera, 160);
-	private TileRenderer tiles = new TileRenderer(20,20);
+	private World BG = new World("Test", camera, 160);
+	private TileRenderer tiles = new TileRenderer(20,24);
 	
 	ShaderManager shaderManager;
 	
@@ -49,8 +50,8 @@ public class PrototypeMenuGUI {
 	
 	public void draw() {
 		
-		BG.render(tiles, Main.shader, Main.camera, Main.window);
-		BG.correctCamera(Main.camera, Main.window);
+		BG.render(this.tiles, shader, camera, window);
+		BG.correctCamera(camera, window);
 		
 		// we will be using paddle shaders from pong to draw out buttons
 		ShaderManager.paddleShader.start();

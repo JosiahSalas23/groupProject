@@ -16,7 +16,7 @@ import src.collision.AABB;
 import src.entity.Entity;
 import src.entity.Player;
 import src.io.Window;
-import src.render.Animation;
+//import src.render.Animation;
 import src.render.Camera;
 import src.render.Shader;
 import src.entity.Transform;

@@ -2,29 +2,29 @@
 package src.game;
 
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
-import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
-import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
-import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
+//import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
+//import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
+//import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+//import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.*;
 
 
-import org.joml.Vector2f;
+//import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 
 //import com.sun.corba.se.impl.ior.ByteBuffer;
 
-import src.collision.AABB;
+//import src.collision.AABB;
 import src.entity.Entity;
 import src.io.Timer;
 import src.io.Window;
 import src.render.Camera;
 import src.render.Shader;
-import src.world.Tile;
+//import src.world.Tile;
 import src.world.TileRenderer;
 import src.world.World;
 
@@ -66,8 +66,8 @@ public class Main {
 		//Window.setCallbacks();
 	
 		
-		AABB box1 = new AABB(new Vector2f(0,0), new Vector2f(1,1));
-		AABB box2 = new AABB(new Vector2f(1,0), new Vector2f(1,1));
+//		AABB box1 = new AABB(new Vector2f(0,0), new Vector2f(1,1));
+//		AABB box2 = new AABB(new Vector2f(1,0), new Vector2f(1,1));
 		
 	//	if(box1.isIntersecting(box2)) {
 		//	System.out.println("The boxes are intersecting");
@@ -103,26 +103,7 @@ public class Main {
 		tiles = new TileRenderer();
 		
 		Entity.initAsset();
-		
-//		float[] vertices = new float[] {
-//				-1f, 1f, 0, //TOP LEFT     0
-//				1f, 1f, 0,  //TOP RIGHT    1
-//				1f, -1f, 0, //BOTTOM RIGHT 2
-//				-1f, -1f, 0,//BOTTOM LEFT  3
-//		};
-//		
-//		float[] texture = new float[] {
-//				0,0,
-//				1,0,
-//				1,1,
-//				0,1,
-//		};
-//		
-//		int[] indices = new int[] {
-//				0,1,2,
-//				2,3,0
-//		};
-//		
+				
 //		Model model = new Model(vertices, texture, indices);
 		shader = new Shader("shader");
 		
@@ -177,8 +158,8 @@ public class Main {
 		camera = null;
 		window = null;
 		tiles = null;
-		box1 = null;
-		box2 = null;
+//		box1 = null;
+//		box2 = null;
 		
 		glfwTerminate();
 		

@@ -8,7 +8,7 @@ public class Tile  {
 	public static final Tile test_tile = new Tile( "test" );
 	public static final Tile test2 = new Tile("checker").setSolid();
 	public static final Tile MainBG = new Tile("frame");
-	public static final Tile PongBG = new Tile("");
+	public static final Tile PongBG = new Tile("PongBG");
 	
 	private byte id;
 	private boolean solid;

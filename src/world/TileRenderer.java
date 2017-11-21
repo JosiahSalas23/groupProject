@@ -65,6 +65,7 @@ public class TileRenderer {
 			 if(Tile.tiles[i] != null) {
 			    if(!tile_Animated.containsKey (Tile.tiles[i].getTexture())) {
 			        String tex = Tile.tiles[i].getTexture();
+			        System.out.println("tex = " + tex);
 			        tile_Animated.put(tex, new Animation(frames,fps, tex )  );
 			    }
 			 }   

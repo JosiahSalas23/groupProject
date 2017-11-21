@@ -10,6 +10,8 @@ package src.pongGameEngine;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_Q;
 
+import static src.game.Main.window;
+import src.io.Input;
 import src.pongText.Text;
 
 public class Pause {
@@ -18,9 +20,9 @@ public class Pause {
 	public boolean toMenu = false;
 	
 	public void update() {
+		Input KeyboardInput = new Input(window.getWindow());
 		
-		
-		/*if (KeyboardInput.isKeyDown(GLFW_KEY_R)) {
+		if (KeyboardInput.isKeyDown(GLFW_KEY_R)) {
 			
 			   System.out.println("Game unpause");
 			   unPause = true;
@@ -32,7 +34,7 @@ public class Pause {
 			   System.out.println("to Menu");
 			   toMenu = true;
 				
-			} // end if*/
+			} // end if
 		
 	} // end update
 	

@@ -19,13 +19,19 @@ package src.pongGameEngine;
 
 import src.io.Window;
 
+import static src.game.Main.camera;
+import static src.game.Main.shader;
+import static src.game.Main.window;
+
 import src.pongGraphicEngine.ShaderManager;
 import src.pongText.Text;
+import src.world.TileRenderer;
 import src.world.World;
 
 public abstract class LevelDif {
-
-	//protected World world = new World();
+	
+	protected World PongBG = new World("PongMap", camera, 160);
+	protected TileRenderer tiles = new TileRenderer(127,24);
 	
 	public Paddle player1;
 	public PaddleLong player1Long;
@@ -162,7 +168,6 @@ public abstract class LevelDif {
 		
 	} // end checkPowerBallCollision
 	
-	
 	// gives advantage to player 1. It will select a random one
 	public void giveAdvantageToPlayer1() {
 		
@@ -240,6 +245,10 @@ public abstract class LevelDif {
 	public void draw() {
 		
 		// draws the score for each player
+		
+		PongBG.render(this.tiles, shader, camera, window);
+		PongBG.correctCamera(camera, window);
+		
 		Text.drawString(String.valueOf(player1.getScore()), -12f, 12f, 0.3f, 0.3f);
 		Text.drawString(String.valueOf(player2.getScore()), 12.5f, 12f, 0.3f, 0.3f);
 		

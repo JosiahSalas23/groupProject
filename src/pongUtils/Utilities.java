@@ -12,7 +12,7 @@ package src.pongUtils;
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.*;
+//import static org.lwjgl.opengl.GL30.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

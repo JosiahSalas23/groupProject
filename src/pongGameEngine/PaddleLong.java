@@ -14,7 +14,7 @@ import src.pongGraphicEngine.VertexArrayObject;
 import src.io.Window;
 //import src.pongUtils.Vector3f;
 
-import static org.lwjgl.glfw.GLFW.*;
+//import static org.lwjgl.glfw.GLFW.*;
 
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;

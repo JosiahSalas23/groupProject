@@ -3,7 +3,7 @@ package src.entity;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
+//import org.lwjgl.glfw.GLFW;
 
 import src.collision.AABB;
 import src.collision.Collision;

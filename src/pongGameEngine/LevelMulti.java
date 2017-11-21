@@ -14,8 +14,8 @@
 
 package src.pongGameEngine;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
-import static org.lwjgl.opengl.GL11.*;
+//import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
+//import static org.lwjgl.opengl.GL11.*;
 
 import src.pongGraphicEngine.ShaderManager;
 import src.io.Window;
@@ -53,7 +53,7 @@ public class LevelMulti {
 	public LevelMulti() {
 		
 		shaderManager = new ShaderManager();
-		shaderManager.loadAll();
+		ShaderManager.loadAll();
 		
 		player1 = new Paddle();
 		player2 = new Paddle();
@@ -316,45 +316,45 @@ public class LevelMulti {
 		// if player 1 has a long paddle draw it, player 2 will have a normal paddle
 		if (player1LongPaddle) {
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player1Long.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player1Long.position);
 			player1Long.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player2.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player2.position);
 			player2.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
 		}
 		
 		// if player 2 has a long paddle draw it, player 1 will have a normal paddle
 		if (player2LongPaddle) {
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player1.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player1.position);
 			player1.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player2Long.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player2Long.position);
 			player2Long.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
 		}
 		
 		// if player 1 and 2 dont have modified paddles draw the normal ones
 		if(!player1LongPaddle && !player2LongPaddle) {
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player1.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player1.position);
 			player1.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
-			shaderManager.paddleShader.start();
-			shaderManager.paddleShader.setUniform3f("pos", player2.position);
+			ShaderManager.paddleShader.start();
+			ShaderManager.paddleShader.setUniform3f("pos", player2.position);
 			player2.draw();
-			shaderManager.paddleShader.stop();
+			ShaderManager.paddleShader.stop();
 			
 		}
 		
@@ -362,56 +362,56 @@ public class LevelMulti {
 		// changes main ball's color as it gets faster
 		if (hitCount > 30) {
 			
-			shaderManager.ballShader5.start();
-			shaderManager.ballShader5.setUniform3f("pos", ball.position);
+			ShaderManager.ballShader5.start();
+			ShaderManager.ballShader5.setUniform3f("pos", ball.position);
 			ball.draw();
-			shaderManager.ballShader5.stop();
+			ShaderManager.ballShader5.stop();
 			
 		} // end if
 		
 		if (hitCount >= 20 && hitCount <= 30) {
 			
-			shaderManager.ballShader4.start();
-			shaderManager.ballShader4.setUniform3f("pos", ball.position);
+			ShaderManager.ballShader4.start();
+			ShaderManager.ballShader4.setUniform3f("pos", ball.position);
 			ball.draw();
-			shaderManager.ballShader4.stop();
+			ShaderManager.ballShader4.stop();
 			
 		} // end if
 		
 		if (hitCount >= 10 && hitCount < 20) {
 			
-			shaderManager.ballShader3.start();
-			shaderManager.ballShader3.setUniform3f("pos", ball.position);
+			ShaderManager.ballShader3.start();
+			ShaderManager.ballShader3.setUniform3f("pos", ball.position);
 			ball.draw();
-			shaderManager.ballShader3.stop();
+			ShaderManager.ballShader3.stop();
 			
 		} // end if
 		
 		if (hitCount >= 5 && hitCount < 10) {
 			
-			shaderManager.ballShader2.start();
-			shaderManager.ballShader2.setUniform3f("pos", ball.position);
+			ShaderManager.ballShader2.start();
+			ShaderManager.ballShader2.setUniform3f("pos", ball.position);
 			ball.draw();
-			shaderManager.ballShader2.stop();
+			ShaderManager.ballShader2.stop();
 			
 		} // end if
 		
 		if (hitCount >= 0 && hitCount < 5) {
 			
-			shaderManager.ballShader1.start();
-			shaderManager.ballShader1.setUniform3f("pos", ball.position);
+			ShaderManager.ballShader1.start();
+			ShaderManager.ballShader1.setUniform3f("pos", ball.position);
 			ball.draw();
-			shaderManager.ballShader1.stop();
+			ShaderManager.ballShader1.stop();
 			
 		} // if
 		
 		// if a powerball spawned draw it
 		if (powerUpBallDroped) {
 			
-			shaderManager.powerUpBallShader.start();
-			shaderManager.powerUpBallShader.setUniform3f("pos", powerBall.position);
+			ShaderManager.powerUpBallShader.start();
+			ShaderManager.powerUpBallShader.setUniform3f("pos", powerBall.position);
 			powerBall.draw();
-			shaderManager.powerUpBallShader.stop();
+			ShaderManager.powerUpBallShader.stop();
 			
 		} // end if
 		
