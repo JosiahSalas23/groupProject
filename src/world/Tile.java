@@ -1,4 +1,4 @@
-package src.world;
+package world;
 
 public class Tile  {
 	public static Tile tiles[] = new Tile[255];

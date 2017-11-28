@@ -4,8 +4,7 @@
 // https://www.youtube.com/watch?v=rXh7HBoJa44&t=819s&index=4&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Date written/modified: November 2017
 // Author: Josiah Salas
-
-package src.prototypeGUI;
+package prototypeGUI;
 
 import static org.lwjgl.opengl.GL11.*;
 //import static org.lwjgl.opengl.GL15.*;

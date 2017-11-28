@@ -1,15 +1,15 @@
-package src.world;
+package world;
 
 import java.util.HashMap;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import src.render.Texture;
-import src.render.Model;
-import src.render.Shader;
-import src.render.Animation;
-import src.render.Camera;
+import render.Texture;
+import render.Model;
+import render.Shader;
+import render.Animation;
+import render.Camera;
 
 public class TileRenderer {
 	private HashMap <String, Animation> tile_Animated;

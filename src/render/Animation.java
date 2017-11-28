@@ -1,6 +1,6 @@
-package src.render;
+package render;
 
-import src.io.Timer;
+import io.Timer;
 
 public class Animation {
 	//contains texture values for animation

@@ -5,8 +5,7 @@
 // https://stackoverflow.com/questions/21960902/how-do-you-render-2d-text-in-lwjgl
 // Date written/modified: November 2017
 
-
-package src.pongText;
+package pongText;
 
 import org.lwjgl.opengl.GL11;
 
@@ -19,6 +18,7 @@ public class Text {
       GL11.glBegin(GL11.GL_LINES);
       GL11.glEnable(GL11.GL_LINE_WIDTH);
       GL11.glColor3f(1, 1, 1);
+      GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
       boolean space = false;
       int charNum = 1, spaceNum = 0;
       for (char c : s.toLowerCase().toCharArray()) {
@@ -250,6 +250,7 @@ public class Text {
               GL11.glVertex2f(scale * (startX), scale * (y - 1));
               break;
           case '1':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX - 0.25f), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX - 0.25f), scale * (y - 1));
               GL11.glVertex2f(scale * (startX - 0.25f), scale * (y + 0.8f));
@@ -258,6 +259,7 @@ public class Text {
               GL11.glVertex2f(scale * (startX), scale * (y - 1));
               break;
           case '2':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.65f));
               GL11.glVertex2f(scale * (startX - 0.3f), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX - 0.3f), scale * (y + 0.8f));
@@ -270,6 +272,7 @@ public class Text {
               GL11.glVertex2f(scale * (startX), scale * (y - 1));
               break;
           case '3':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
@@ -282,6 +285,7 @@ public class Text {
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y - 1));
               break;
           case '4':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * startX, scale * (y + 0.8f));
               GL11.glVertex2f(scale * startX, scale * (y - 1));
               GL11.glVertex2f(scale * startX, scale * (y + 0.8f));
@@ -290,12 +294,15 @@ public class Text {
               GL11.glVertex2f(scale * (startX), scale * (y));
               break;
           case '8':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX), scale * (y));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
           case '6':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y));
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y - 1));
           case '5':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.8f));
@@ -308,12 +315,14 @@ public class Text {
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y - 1));
               break;
           case '7':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y - 1));
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               break;
           case '9':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX), scale * (y));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
@@ -328,6 +337,7 @@ public class Text {
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y - 1));
               break;
           case '0':
+        	  GL11.glColor4f(0.0f,0.0f,0.0f,1.0f);
               GL11.glVertex2f(scale * (startX), scale * (y + 0.8f));
               GL11.glVertex2f(scale * (startX), scale * (y - 1));
               GL11.glVertex2f(scale * (startX), scale * (y - 1));

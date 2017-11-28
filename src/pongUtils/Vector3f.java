@@ -7,7 +7,7 @@
 // Date written/modified: October 2017
 // Author: Josiah Salas
 
-package src.pongUtils;
+package pongUtils;
 
 public class Vector3f {
 

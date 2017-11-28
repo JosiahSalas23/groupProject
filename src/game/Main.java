@@ -1,42 +1,43 @@
 
-package src.game;
+package game;
 
 
-//import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
-//import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
-//import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
-//import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
+import static game.Main.camera;
+import static game.Main.shader;
+import static game.Main.window;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ESCAPE;
+import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
+import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
+import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.*;
 
 
-//import org.joml.Vector2f;
+import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 
-//import com.sun.corba.se.impl.ior.ByteBuffer;
+import com.sun.corba.se.impl.ior.ByteBuffer;
 
-//import src.collision.AABB;
-import src.entity.Entity;
-import src.io.Timer;
-import src.io.Window;
-import src.render.Camera;
-import src.render.Shader;
-//import src.world.Tile;
-import src.world.TileRenderer;
-import src.world.World;
+import collision.AABB;
+import entity.Entity;
+import io.Timer;
+import io.Window;
+import render.Camera;
+import render.Shader;
+import world.Tile;
+import world.TileRenderer;
+import world.World;
 
-import src.pongGameEngine.LevelEasy;
-import src.pongGameEngine.LevelMedium;
-import src.pongGameEngine.LevelHard;
-import src.pongGameEngine.LevelMulti;
-import src.prototypeGUI.PrototypeMenuGUI;
+
+import pongGameEngine.Pong;
+import prototypeGUI.PrototypeMenuGUI;
 
 // keeps track of what state the program is in
 enum State {
-    MENU, PONGEASY, PONGMEDIUM, PONGHARD, PONGMULTI, MAZE
+    MENU, PONG, MAZE
 };
 
 public class Main {
@@ -51,27 +52,18 @@ public class Main {
 	World world;
 	public static Window window;
 	
-	LevelEasy pongEasy;
-	LevelMedium pongMedium;
-	LevelHard pongHard;
-	LevelMulti pongMulti;
-	PrototypeMenuGUI menuGUI;
+	World PongBG;
+	TileRenderer pongTiles;
+	
 	double frame_cap;
 	
+	PrototypeMenuGUI menuGUI;
 	
+	Pong pong;
 	
 	private static State gameState = State.MENU;
 	
-	public Main() {
-		//Window.setCallbacks();
-	
-		
-//		AABB box1 = new AABB(new Vector2f(0,0), new Vector2f(1,1));
-//		AABB box2 = new AABB(new Vector2f(1,0), new Vector2f(1,1));
-		
-	//	if(box1.isIntersecting(box2)) {
-		//	System.out.println("The boxes are intersecting");
-	//	}		
+	public Main() {	
 		
 		if(!glfwInit()) {
 			System.err.println("GLFW Failed to initialize!");
@@ -86,16 +78,9 @@ public class Main {
 		
 		GL.createCapabilities();
 		
-		//blend player texture to fit better with background.
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
-		pongEasy = new LevelEasy();
-		pongMedium = new LevelMedium();
-		pongHard = new LevelHard();
-		pongMulti = new LevelMulti();
 		menuGUI = new PrototypeMenuGUI();
 		
+		pong = new Pong();
 		
 		camera = new Camera(window.getWidth(), window.getHeight());
 		glEnable(GL_TEXTURE_2D);
@@ -103,12 +88,14 @@ public class Main {
 		tiles = new TileRenderer();
 		
 		Entity.initAsset();
-				
-//		Model model = new Model(vertices, texture, indices);
+		
 		shader = new Shader("shader");
 		
-		world = new World("test_level",camera);
-
+		world = new World("test_level", camera);
+		
+		PongBG = new World("PongMap", camera, 160);
+		pongTiles = new TileRenderer(127,24);
+		
 		frame_cap = 1.0/60.0;
 		
 		double frame_time = 0;
@@ -143,8 +130,6 @@ public class Main {
 			
 			if(can_render) {
 				glClear(GL_COLOR_BUFFER_BIT);
-
-				
 				render();
 				
 				window.swapBuffers();
@@ -158,14 +143,13 @@ public class Main {
 		camera = null;
 		window = null;
 		tiles = null;
-//		box1 = null;
-//		box2 = null;
 		
 		glfwTerminate();
 		
 	} // end of game constructor
 	
 	public void update() {
+		
 		
 		if(quit) {
 			
@@ -176,7 +160,7 @@ public class Main {
 		// to exit out of games press q to go back to main menu
 		if (inPlay) {
 			
-			if(window.getInput().isKeyDown(GLFW.GLFW_KEY_Q)) {
+			if(window.getInput().isKeyDown(GLFW.GLFW_KEY_ESCAPE)) {
 					
 				gameState = State.MENU;
 				
@@ -188,37 +172,6 @@ public class Main {
 		
 			// if the menu is on this checks for user input to check what game to run/ or to close
 			case MENU:
-				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_M)) {
-					
-					gameState = State.MAZE;
-					inPlay = true;
-								
-				} // end if
-				
-				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_P)) {
-					
-					gameState = State.PONGMULTI;
-					pongMulti = new LevelMulti();
-					inPlay = true;
-				
-				} // end if
-				
-				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_E)) {
-					
-					gameState = State.PONGEASY;
-					pongEasy = new LevelEasy();
-					inPlay = true;
-					
-				
-				} // end if
-				
-				if(window.getInput().isKeyDown(GLFW.GLFW_KEY_T)) {
-					
-					gameState = State.PONGMEDIUM;
-					pongMedium = new LevelMedium();
-					inPlay = true;
-				
-				} // end if
 				
 				// checks to see if mouse is inside the area of the pongButton
 				if ((menuGUI.pongButton.position.x + menuGUI.pongButton.WIDTH) * (window.getWidth()/2) > window.getDX()
@@ -229,13 +182,12 @@ public class Main {
 					// if the mouse clicks the pong button set the quitSelection to true and exit out of the loop
 					if(window.getInput().isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_1)) {
 						
-						gameState = State.PONGHARD;
-						pongHard = new LevelHard();
+						gameState = State.PONG;
+						pong = new Pong();
+						glPushAttrib( GL_CURRENT_BIT );
 						inPlay = true;
 						
-						
 					} // end if
-					
 					
 				} // end if
 				
@@ -253,7 +205,6 @@ public class Main {
 						
 					} // end if
 					
-					
 				} // end if
 				
 				// checks to see if mouse is inside the area of the quitButton
@@ -268,30 +219,14 @@ public class Main {
 						quit = true;
 						
 					} // end if
-					
-					
+									
 				} // end if
 				
 				window.update();
 				break;
 				
-			case PONGEASY:
-				pongEasy.update(window);
-				window.update();
-				break;
-				
-			case PONGMEDIUM:
-				pongMedium.update(window);
-				window.update();
-				break;
-				
-			case PONGHARD:
-				pongHard.update(window);
-				window.update();
-				break;
-				
-			case PONGMULTI:
-				pongMulti.update(window);
+			case PONG:
+				pong.update(window);
 				window.update();
 				break;
 				
@@ -301,8 +236,7 @@ public class Main {
 				world.correctCamera(camera, window);
 				window.update();
 				break;
-		
-		
+			
 		} // end switch
 		
 	} // end update
@@ -312,32 +246,21 @@ public class Main {
 		
 		switch(gameState) {
 		
-		case MENU:
-			menuGUI.draw();
-			break;
+			case MENU:
+				menuGUI.draw();
+				break;
 			
-		case PONGEASY:
-			pongEasy.draw();
-			break;
+			case PONG:
+				PongBG.render(this.pongTiles, shader, camera, window);
+				PongBG.correctCamera(camera, window);
+				pong.draw();
+				break;
 			
-		case PONGMEDIUM:
-			pongMedium.draw();
-			
-		case PONGHARD:
-			pongHard.draw();
-			break;
-			
-		case PONGMULTI:
-			pongMulti.draw();
-			break;
-			
-		case MAZE:
-			world.render(tiles, shader, camera, window);
-			break;
+			case MAZE:
+				world.render(tiles, shader, camera, window);
+				break;
 	
-	
-		} // end switch
-		
+		} // end switch	
 		
 	} // end render
 	

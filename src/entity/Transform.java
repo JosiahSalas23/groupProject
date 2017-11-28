@@ -1,7 +1,5 @@
 //gives all positioning and scaling
-
-
-package src.entity;
+package entity;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

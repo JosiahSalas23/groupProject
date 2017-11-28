@@ -4,17 +4,12 @@
 // https://www.youtube.com/watch?v=_rjSel-6K38&index=7&list=PLzUGFf4GhXBJZ2FurlDXVGr0iqScUfi9e
 // Date written/modified: October 2017
 // Author: Josiah Salas
-package src.pongGraphicEngine;
+package pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL20.*;
-//import static org.lwjgl.opengl.GL30.*;
-import static src.pongUtils.Utilities.*;
+import static pongUtils.Utilities.*;
 
-import org.joml.Vector3f;
-
-
-
-//import src.pongUtils.Vector3f;
+import pongUtils.Vector3f;
 
 public class Shader {
 

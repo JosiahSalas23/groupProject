@@ -5,13 +5,13 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package src.pongGraphicEngine;
+package pongGraphicEngine;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
-import static src.pongUtils.Utilities.*;
+import static pongUtils.Utilities.*;
 
 public class VertexArrayObject {
 	

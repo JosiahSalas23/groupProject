@@ -1,13 +1,13 @@
-package src.entity;
+package entity;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-import src.io.Window;
-import src.render.Animation;
-import src.render.Camera;
-import src.world.World;
+import io.Window;
+import render.Animation;
+import render.Camera;
+import world.World;
 
 
 public class Player extends Entity {

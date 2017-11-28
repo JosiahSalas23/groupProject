@@ -1,4 +1,4 @@
-package src.render;
+package render;
 import   java.awt.image.BufferedImage;
 
 import static org.lwjgl.opengl.GL13.*;

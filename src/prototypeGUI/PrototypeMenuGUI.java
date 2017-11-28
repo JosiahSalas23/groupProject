@@ -3,17 +3,17 @@
 // Date written/modified: November 2017
 // Author: Josiah Salas
 
-package src.prototypeGUI;
+package prototypeGUI;
 
-import static src.game.Main.window; 
-import static src.game.Main.camera;
-import static src.game.Main.shader;
+import static game.Main.window; 
+import static game.Main.camera;
+import static game.Main.shader;
 //import static org.lwjgl.glfw.GLFW.*;
 
-import src.pongGraphicEngine.ShaderManager;
-import src.pongText.Text;
-import src.world.TileRenderer;
-import src.world.World;
+import pongGraphicEngine.ShaderManager;
+import pongText.Text;
+import world.TileRenderer;
+import world.World;
 
 public class PrototypeMenuGUI {
 
