@@ -1,3 +1,19 @@
+/**
+ * <h1>TileRender</h1>
+ * TileRenderer is the implements the rendering of a sequence of tile objects
+ * 
+ * <p>
+ * The TileRenderer class is responceable for rendering tiled images.
+ * Storing a Hashmap of both Texture objects and Animation objects.
+ * Supports both static and animated tiles
+ * 
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 package world;
 
 import java.util.HashMap;
@@ -34,7 +50,9 @@ public class TileRenderer {
 			0,1,2,
 			2,3,0
 	};
-	
+	/**
+	 * TileRenderer - default constructor
+	 */
 	public TileRenderer() {
 		animated = false;
 		tile_textures = new HashMap<String, Texture>();
@@ -53,7 +71,12 @@ public class TileRenderer {
 				 
 		 }
 	}
-	
+	/**
+	 * TileRenderer - constructor taking two integer values
+	 * 
+	 * @param frames - the number of frames in the animation
+	 * @param fps - the speed the animation is to be played on screen
+	 */
 	public TileRenderer(int frames, int fps) {
 		animated = true;
 		tile_Animated = new HashMap<String, Animation>();
@@ -72,7 +95,15 @@ public class TileRenderer {
 				 
 		 }
 	}
-	
+	/**
+	 * 
+	 * @param tile - the tile object being passed
+	 * @param x - the tile x position in the world
+	 * @param y - the tile y position in the world
+	 * @param shader - the opengl shader id
+	 * @param world - the world matrix used
+	 * @param cam - the Camera object being passed
+	 */
 	public void renderTile(Tile  tile, int x, int y, Shader shader, Matrix4f world, Camera cam) {
 		shader.bind();
 		if(animated == true) {

@@ -9,7 +9,21 @@ import render.Animation;
 import render.Camera;
 import world.World;
 
-
+/**
+ * <h1>Player</h1>
+ * <h2>Parent Entity</h2>
+ * The implementation of the Player entity.
+ * 
+ * <p>
+ * The Player class is a sub class of Entity.
+ * Implements entities update method
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 public class Player extends Entity {
 	public static final int ANIM_SIZE = 2;
 	
@@ -27,7 +41,11 @@ public class Player extends Entity {
 	Animation walkDown = new Animation(9, 12, "player/walkingdown");
 	
 	Animation idle = new Animation(4, 2, "player/idle");
-	
+	/**
+	 * Player constructor
+	 * 
+	 * @param transform - a Transform object
+	 */
 	public Player(Transform transform) {
 		super(ANIM_SIZE, transform);
 
@@ -42,6 +60,9 @@ public class Player extends Entity {
 	
 	//update player's position in the world according to key presses.
 	//use different animations depending on the direction the character is moving.
+	/**
+	 * The update method for Player
+	 */
 	@Override
 	public void update(float delta, Window window, Camera camera, World world) {
 		Vector2f movement = new Vector2f();

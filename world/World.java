@@ -20,6 +20,15 @@ import render.Camera;
 import render.Shader;
 import entity.Transform;
 
+/**
+ * <h1>World</h1> 
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 public class World {
 	private final int view = 24;
 	private byte[] tiles;
@@ -31,10 +40,36 @@ public class World {
 	
 	private Matrix4f world;
 	
+	/**
+	 * World - default constructor
+	 */
+	public World() {
+		width = 64;
+		height = 64;
+		scale = 16;
+		
+		tiles = new byte[width * height];
+		bounding_boxes = new AABB[width * height];
+		
+		world = new Matrix4f().setTranslation(new Vector3f(0));
+		world.scale(scale);
+	}
+	/**
+	 * constructor
+	 * 
+	 * @param world - file path to image file
+	 * @param camera - Camera object
+	 */
 	public World(String world, Camera camera) {
 		this(world ,camera, 16);
 	}
 	
+	/**
+	 * 
+	 * @param world - file path to image file
+	 * @param camera - Camera object
+	 * @param s - scale integer value
+	 */
 	public World(String world,Camera camera, int s) {
 		try {
 			System.out.println("world file:" + world);
@@ -102,24 +137,22 @@ public class World {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public World() {
-		width = 64;
-		height = 64;
-		scale = 16;
-		
-		tiles = new byte[width * height];
-		bounding_boxes = new AABB[width * height];
-		
-		world = new Matrix4f().setTranslation(new Vector3f(0));
-		world.scale(scale);
-	}
-	
+	/**
+	 * getWorldMatrix - returns the objects world matrix
+	 * @return world matrix4f
+	 */
 	public Matrix4f getWorldMatrix() {
 		return world;
 	}
 	
+	/**
+	 * render - renders the world
+	 * 
+	 * @param render - TileRenderer object
+	 * @param shader - Shader object
+	 * @param cam - Camera object
+	 * @param window - Window object
+	 */
 	public void render(TileRenderer render, Shader shader, Camera cam, Window window) {
 		int posX = ((int)cam.getPosition().x + (window.getWidth()/2)) / (scale * 2);
 		int posY = ((int)cam.getPosition().y - (window.getHeight()/2)) / (scale * 2);
@@ -139,6 +172,13 @@ public class World {
 		
 	}
 	
+	/**
+	 * Update - updates the world
+	 * 
+	 * @param delta - the frame rate cap
+	 * @param window - Window object
+	 * @param camera - Camera object
+	 */
 	public void update(float delta, Window window, Camera camera) {
 		//iterate and update all entities of entity list.
 		for(Entity entity : entities) {
@@ -156,6 +196,12 @@ public class World {
 
 	}
 	
+	/**
+	 * correctCamera - tracks the camera to the player
+	 * 
+	 * @param camera - Camera object
+	 * @param window - Window object
+	 */
 	public void correctCamera(Camera camera, Window window) {
 		Vector3f pos = camera.getPosition();
 		
@@ -173,6 +219,13 @@ public class World {
 			pos.y = h-(window.getHeight()/2)-scale;
 	}
 	
+	/**
+	 * setTile - sets the tile at a position x and y
+	 * 
+	 * @param tile - Tile object
+	 * @param x - x position integer value
+	 * @param y - y position integer value
+	 */
 	public void setTile(Tile tile, int x, int y) {
 		tiles[x + y * width] = tile.getId();
 		if(tile.isSolid()) {
@@ -181,6 +234,14 @@ public class World {
 			bounding_boxes[x + y * width] = null;
 		}
 	}
+	
+	/**
+	 * getTile - get the Tile at position x and y
+	 * 
+	 * @param x - x position integer value
+	 * @param y - y position integer value
+	 * @return the Tile object at position x and y
+	 */
 	public Tile getTile(int x, int y) {
 		try {
 			return Tile.tiles[tiles[x + y * width]];
@@ -188,6 +249,13 @@ public class World {
 			return null;
 		}
 	}
+	/**
+	 * getTileBoundingBox - gets the tile bounding box at position x and y
+	 * 
+	 * @param x - x position integer value
+	 * @param y - y position integer value
+	 * @return a AABB object
+	 */
 	public AABB getTileBoundingBox(int x, int y) {
 		try {
 			return bounding_boxes[x + y * width];
@@ -196,5 +264,10 @@ public class World {
 		}
 	}
 
+	/**
+	 * getScale - gets the scale of the world
+	 * 
+	 * @return scale integer
+	 */
 	public int getScale() { return scale; }
 }
