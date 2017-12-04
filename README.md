@@ -11,7 +11,7 @@ mambers:
   
  <h1>ARCADE</h1>
  
- Arcade is a standalone PC apllication that allows the integration and navigation of seperate games.
+ Arcade is a standalone PC application that allows the integration and navigation of seperate games.
  Currently two games are bundled with the application PONG and MAZE.
  The application is wirtten in The Java programming language, using the Light Weight Java Game Library as the primary library for hanling graphics and Input Output
  <h3>PONG</h3>
