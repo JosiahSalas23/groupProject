@@ -14,9 +14,9 @@ mambers:
  Arcade is a standalone PC apllication that allows the integration and navigation of seperate games.
  Currently two games are bundled with the application PONG and MAZE.
  The application is wirtten in The Java programming language, using the Light Weight Java Game Library as the primary library for hanling graphics and Input Output
- PONG
+ <h3>PONG</h3>
  The recreation of the 1972 game of the same name, into the java programming language.
  Adding animated backgraound, difficulty setting and power ups.
- Maze
+ <h3>Maze</h3>
  Is a game where the play is to navigate and escape.
  The game is not fullly implemented and servese as a way to demonstrate the feature of changing between games at this point.
