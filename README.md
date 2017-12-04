@@ -1,9 +1,19 @@
+ <h1>Refer to README.pdf For Full Version of README</h1>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 <i>New Mexico State University</i>
 Computer Science
 Course: CS371
 Semester: Fall 2017 
 <h2>Student Group Project</h2>
-mambers:
+members:
   <h3>Kevin Bornemeier</h3>
   <h3>Michael Garcia</h3>
   <h3>Josiah Salas</h3>
@@ -21,5 +31,6 @@ mambers:
  A game in which the objective is to navigate the player in a maze environment.
 
 
+ <h1>Refer to README.pdf For Full Version of README</h1>
 
 For more infomation please refer the to README.pdf
