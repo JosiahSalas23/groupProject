@@ -9,11 +9,26 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;
 
+/**
+ * <h1>Texture</h1>
+ * The Texture class reads and stores an image file at a given location
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 public class Texture {
 	private int id;
 	private int width;
 	private int height;
-	
+	/**
+	 * Texture constructor
+	 * Loads and stores an image to be binded to a 2d object
+	 * 
+	 * @param filename - string file path
+	 */
 	public Texture(String filename) {
 		BufferedImage bi;
 		try{
@@ -55,11 +70,19 @@ public class Texture {
 	}
 	
 	//override existing object finalize
+	/**
+	 * Finalize - destroys the Texture object
+	 */
 	protected void finalize()  throws Throwable {
 		glDeleteTextures(id);
 		super.finalize();
 	}
 	
+	/**
+	 * bind - binds the texture to a OpenGL 2D object
+	 * 
+	 * @param sampler - integer OpenGL sampler ID
+	 */
 	public void bind(int sampler) {
 		if (sampler >= 0 && sampler <= 31) {
 		//bind our texture to the first sampler

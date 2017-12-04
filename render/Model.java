@@ -7,6 +7,20 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 
+
+/**
+ * <h1>Model</h1>
+ * contains the a OpenGL object
+ * 
+ * <p>
+ * takes a array of vertices, texture coordinates and texture indices
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 public class Model {
 	private int draw_count;
 	private int v_id;
@@ -14,6 +28,13 @@ public class Model {
 	
 	private int i_id;
 	
+	/**
+	 * Model constructor
+	 * 
+	 * @param vertices - Array of floating point values representing 3D coordinates
+	 * @param tex_coords - Array of floating point values representing texture coordinates on the model
+	 * @param indices - Array of integer values representing texture index on the 3D object
+	 */
 	public Model(float[] vertices, float[] tex_coords , int[] indices) {
 		draw_count = indices.length ;
 			
@@ -41,6 +62,10 @@ public class Model {
 	}
 	
 	//delete every bit of info 
+	/**
+	 * finalize - destroy the object
+	 * Overloaded from Object
+	 */
 	protected void finalize() {
 		glDeleteBuffers(v_id);
 		glDeleteBuffers(t_id);
@@ -48,6 +73,9 @@ public class Model {
 		
 	}
 	
+	/**
+	 * render - renders the model to the screen in 3D space
+	 */
 	public void render() {
 		//enable and disable texture attribute
 		glEnableVertexAttribArray(0);
@@ -69,7 +97,12 @@ public class Model {
 		glDisableVertexAttribArray(1);
 		
 	}
-	
+	/**
+	 * createBuffer
+	 * 
+	 * @param data - Floating point array
+	 * @return - Floating point buffer array
+	 */
 	private FloatBuffer createBuffer(float[] data) {
 		FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
 		buffer.put(data);

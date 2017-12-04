@@ -12,12 +12,29 @@ import java.nio.FloatBuffer;
 
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
-
+/**
+ * <h1>Shader</h1>
+ * contains the color shading data
+ * 
+ * <p>
+ * tells of the all textures are to be displayed to the screen
+ * 
+ * @author August B. Sandoval
+ * @author Kevin Bornemeier
+ * @author Josiah Salas
+ * @version 1.3
+ * @since 2017-11-29
+ */
 public class Shader {
 	private int program;
 	private int vs;
 	private int fs;
 	
+	/**
+	 * Shader - constructor
+	 * 
+	 * @param filename - String name of a pair of .vs and .fs files
+	 */
 	public Shader(String filename) {
 		program = glCreateProgram();
 		
@@ -61,7 +78,10 @@ public class Shader {
 			System.exit(1);
 		}
 	}	
-	
+	/**
+	 * finalize - destroys the object
+	 * overloads finalize from Object
+	 */
 	protected void finalize() {
 		glDetachShader(program, vs);
 		glDetachShader(program, fs);
@@ -91,7 +111,12 @@ public class Shader {
     }
 	
 	
-	
+	/**
+	 * readFile - Reads the pair of shader files .vs ,.fs
+	 * 
+	 * @param filename - directory path string
+	 * @return string representation of the current object
+	 */
 	private String readFile(String filename){
 		StringBuilder string = new StringBuilder();
 		BufferedReader br;
