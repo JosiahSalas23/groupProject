@@ -18,5 +18,8 @@ mambers:
  The recreation of the 1972 game of the same name, into the java programming language.
  Adding animated backgraound, difficulty setting and power ups.
  <h3>Maze</h3>
- Is a game where the play is to navigate and escape.
- The game is not fullly implemented and servese as a way to demonstrate the feature of changing between games at this point.
+ A game in which the objective is to navigate the player in a maze environment.
+
+
+
+For more infomation please refer the to README.pdf
