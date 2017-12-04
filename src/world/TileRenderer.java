@@ -10,6 +10,7 @@ import render.Model;
 import render.Shader;
 import render.Camera;
 
+//class to render tiles into game environment.
 public class TileRenderer {
 	private HashMap <String, Texture> tile_textures;
 	private Model model;

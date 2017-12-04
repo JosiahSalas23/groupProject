@@ -2,6 +2,7 @@ package collision;
 
 import org.joml.Vector2f;
 
+//class to provide collision logic for Maze game. Collision makes the player unable to pass through tiles.
 public class AABB {
 	private Vector2f center, half_extent;
 	
@@ -9,7 +10,7 @@ public class AABB {
 		this.center = center;
 		this.half_extent = half_extent;
 	}
-
+    
 	public Collision  getCollision(AABB box2) {
 		Vector2f distance = box2.center.sub(center, new Vector2f() );
 		//make distance absolute value

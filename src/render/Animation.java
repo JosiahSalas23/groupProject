@@ -2,6 +2,7 @@ package render;
 
 import io.Timer;
 
+//animation class to support player animations.
 public class Animation {
 	//contains texture values for animation
 	private Texture[] frames;
@@ -23,7 +24,7 @@ public class Animation {
 		
 		this.frames = new Texture[amount];
 		for (int i = 0; i < amount; i++) {
-			this.frames[i] = new Texture("anim/" + filename + "_" + i + ".png");
+			this.frames[i] = new Texture(filename + "/" + i + ".png");
 		}
 	}
 	
@@ -36,7 +37,7 @@ public class Animation {
 		this.elapsedTime += currentTime - lastTime;
 		
 		if(elapsedTime >= fps) {
-			elapsedTime -= fps;
+			elapsedTime = 0;
 			pointer++;
 		}
 		

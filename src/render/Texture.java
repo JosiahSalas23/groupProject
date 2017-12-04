@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;
 
+//class to enable textures in the game environment. This is used to color tiles and all other surrounding game environment.
 public class Texture {
 	private int id;
 	private int width;
@@ -61,7 +62,7 @@ public class Texture {
 	
 	public void bind(int sampler) {
 		if (sampler >= 0 && sampler <= 31) {
-		//bind our texture to the first sampler
+		//bind texture to the first sampler
 		glActiveTexture(GL_TEXTURE0 + sampler);
 		glBindTexture(GL_TEXTURE_2D, id);
 		}

@@ -7,6 +7,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 
+//class to help render and bind.
 public class Model {
 	private int draw_count;
 	private int v_id;

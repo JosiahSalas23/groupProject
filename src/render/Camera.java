@@ -2,7 +2,8 @@ package render;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-
+//class to set up the game camera, which adjusts based on player's position. This allows the screen to 
+//stay centered on the player.
 public class Camera {
 	private Vector3f position;
 	private Matrix4f projection;

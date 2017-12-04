@@ -5,6 +5,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
+//class to initialize and set up the game window to desired specifications.
 public class Window {
 	private long window;
 	

@@ -13,6 +13,8 @@ import java.nio.FloatBuffer;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
+//class to enable shaders. Able to read from filepath.
+//shaders help adjust picture attributes in the game.
 public class Shader {
 	private int program;
 	private int vs;

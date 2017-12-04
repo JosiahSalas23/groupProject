@@ -1,5 +1,6 @@
 package world;
 
+//class to set tiles within game environment.
 public class Tile  {
 	public static Tile tiles[] = new Tile[255];
 	//not = number_of_tiles
